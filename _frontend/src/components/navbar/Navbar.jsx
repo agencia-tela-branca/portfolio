@@ -67,7 +67,7 @@ const Navbar = () => {
                                 🌿
                             </motion.span>
                             <span className="text-2xl font-bold text-white group-hover:text-emerald-300 transition-colors">
-                                SMD
+                                Agência Tela Branca
                             </span>
                         </Link>
 
