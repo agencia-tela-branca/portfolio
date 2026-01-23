@@ -1,0 +1,11 @@
+services:
+  frontend:
+    build: .
+    container_name: portfolio-frontend
+    restart: always
+
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflare-tunnel
+    restart: always
+    command: tunnel run --token ${TUNNEL_TOKEN}
