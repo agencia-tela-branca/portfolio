@@ -1,103 +1,83 @@
 import { motion } from "framer-motion";
 import { Button } from "@mui/material";
-import { 
-    FileText, TrendingUp, Users, Check, X, 
-    Shield, Zap, Lock, Layers, Clock, BarChart, 
-    Bell, Smartphone, Github, Linkedin, Twitter 
+import {
+    Globe, TrendingUp, Zap, ArrowRight,
+    CheckCircle2, Sparkles, Rocket, Target,
+    Mail, Linkedin, Instagram, Twitter
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import Navbar from "../../components/navbar/Navbar";
-import StatCard from "../../components/card/StatCard";
-import FeatureCard from "../../components/card/FeatureCard";
-import StepCard from "../../components/card/StepCard";
-import PersonaCard from "../../components/card/PersonaCard";
 
 const HomePage = () => {
-    const navigate = useNavigate();
-
     // Variantes de animação
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.15,
-                delayChildren: 0.2
+                staggerChildren: 0.2,
+                delayChildren: 0.1
             }
         }
     };
 
     const itemVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { 
-            opacity: 1, 
+        hidden: { opacity: 0, y: 30 },
+        visible: {
+            opacity: 1,
             y: 0,
-            transition: { duration: 0.5 }
+            transition: { duration: 0.6, ease: "easeOut" }
         }
     };
 
-    // Dados das seções
-    const steps = [
+    const fadeInUp = {
+        hidden: { opacity: 0, y: 40 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.8, ease: "easeOut" }
+        }
+    };
+
+    // Dados dos serviços
+    const services = [
         {
-            title: "Crie Fluxos Personalizados",
-            description: "Configure processos específicos para cada departamento da sua empresa com campos customizáveis.",
-            icon: <Layers className="text-white" size={28} />
+            icon: <Globe className="text-white" size={32} />,
+            title: "Sites de Alta Conversão",
+            description: "Desenvolvemos sites modernos, responsivos e otimizados para converter visitantes em clientes. Design estratégico focado em resultados.",
+            gradient: "from-accent-blue to-accent-cyan",
+            features: ["Design Responsivo", "SEO Otimizado", "Performance Máxima"]
         },
         {
-            title: "Digitalize Documentos",
-            description: "Transforme formulários em papel em dados estruturados acessíveis de qualquer lugar.",
-            icon: <FileText className="text-white" size={28} />
+            icon: <TrendingUp className="text-white" size={32} />,
+            title: "Presença Digital Estratégica",
+            description: "Potencialize sua marca online com estratégias orgânicas e pagas que geram visibilidade, engajamento e crescimento sustentável.",
+            gradient: "from-accent-purple to-accent-blue",
+            features: ["Marketing Digital", "Gestão de Redes", "Análise de Dados"]
         },
         {
-            title: "Preencha Online",
-            description: "Colaboradores preenchem documentos via web com validação automática de dados.",
-            icon: <Smartphone className="text-white" size={28} />
-        },
-        {
-            title: "Aprove em Tempo Real",
-            description: "Gestores acompanham e aprovam documentos instantaneamente pelo sistema.",
-            icon: <Check className="text-white" size={28} />
-        },
-        {
-            title: "Gere Insights Automáticos",
-            description: "Relatórios e indicadores de performance gerados automaticamente para tomada de decisão.",
-            icon: <BarChart className="text-white" size={28} />
+            icon: <Zap className="text-white" size={32} />,
+            title: "Automação Inteligente",
+            description: "Transformamos processos manuais em fluxos digitais automatizados. Ganhe tempo, reduza erros e escale seu negócio com tecnologia.",
+            gradient: "from-accent-cyan to-accent-purple",
+            features: ["Workflows Automatizados", "Integrações", "Eficiência Operacional"]
         }
     ];
 
-    const personas = [
+    // Diferenciais
+    const differentials = [
         {
-            avatar: "👨‍💼",
-            role: "Administradores",
-            description: "Controle total do sistema, gestão de usuários e relatórios estratégicos",
-            benefits: [
-                "Dashboard completo com visão 360°",
-                "Auditoria de todos os processos",
-                "Controle granular de permissões",
-                "Relatórios customizados"
-            ]
+            icon: <Target size={24} />,
+            title: "Foco em Resultados",
+            description: "Cada projeto é pensado para gerar impacto real no seu negócio"
         },
         {
-            avatar: "👔",
-            role: "Gestores",
-            description: "Acompanhamento de fluxos, aprovações e análise de performance em tempo real",
-            benefits: [
-                "Aprovações rápidas e digitais",
-                "Notificações inteligentes",
-                "Métricas de produtividade",
-                "Histórico de mudanças"
-            ]
+            icon: <Sparkles size={24} />,
+            title: "Design Moderno",
+            description: "Interfaces que impressionam e convertem, sempre atualizadas com as últimas tendências"
         },
         {
-            avatar: "👨‍💻",
-            role: "Colaboradores",
-            description: "Preenchimento simples e rápido de documentos digitais de qualquer dispositivo",
-            benefits: [
-                "Interface intuitiva e amigável",
-                "Acesso mobile responsivo",
-                "Validação automática de dados",
-                "Suporte em tempo real"
-            ]
+            icon: <Rocket size={24} />,
+            title: "Entrega Ágil",
+            description: "Processos otimizados para lançar sua solução rapidamente no mercado"
         }
     ];
 
@@ -109,537 +89,341 @@ const HomePage = () => {
     };
 
     return (
-        <div className="min-h-screen flex flex-col bg-gray-950">
-            <Navbar />
+        <div className="min-h-screen flex flex-col bg-white">
+            {/* Navbar Minimalista */}
+            <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-brand-gray">
+                <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        className="flex items-center gap-2"
+                    >
+                        <div className="w-10 h-10 bg-gradient-to-br from-accent-blue to-accent-purple rounded-lg flex items-center justify-center">
+                            <span className="text-white font-bold text-xl">TB</span>
+                        </div>
+                        <span className="text-xl font-bold text-brand-charcoal">Tela Branca</span>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        className="hidden md:flex items-center gap-8"
+                    >
+                        <a href="#servicos" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Serviços</a>
+                        <a href="#diferenciais" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Diferenciais</a>
+                        <Button
+                            variant="contained"
+                            href="#contato"
+                            className="!bg-gradient-to-r !from-accent-blue !to-accent-purple hover:!from-accent-blueHover hover:!to-accent-purpleHover !text-white !font-semibold !px-6 !py-2 !rounded-full !shadow-lg !normal-case"
+                        >
+                            Fale Conosco
+                        </Button>
+                    </motion.div>
+                </div>
+            </nav>
 
             {/* Hero Section */}
-            <section className="flex-1 flex flex-col items-center justify-center text-center p-6 md:p-8 mt-16 md:mt-20 bg-gradient-to-br from-green-950 via-emerald-900 to-teal-950 bg-[length:200%_200%] animate-gradient-slow text-white min-h-[600px]">
-                <motion.h1
-                    initial={{ opacity: 0, y: -30 }}
+            <section className="flex-1 flex flex-col items-center justify-center text-center px-6 py-32 md:py-40 mt-16 bg-gradient-to-br from-brand-offwhite via-white to-brand-lightgray relative overflow-hidden">
+                {/* Background decorativo */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <motion.div
+                        animate={{
+                            scale: [1, 1.2, 1],
+                            rotate: [0, 90, 0]
+                        }}
+                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                        className="absolute -top-1/2 -right-1/2 w-full h-full bg-gradient-to-br from-accent-blue/5 to-accent-purple/5 rounded-full blur-3xl"
+                    />
+                    <motion.div
+                        animate={{
+                            scale: [1.2, 1, 1.2],
+                            rotate: [90, 0, 90]
+                        }}
+                        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                        className="absolute -bottom-1/2 -left-1/2 w-full h-full bg-gradient-to-tr from-accent-cyan/5 to-accent-purple/5 rounded-full blur-3xl"
+                    />
+                </div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight drop-shadow-lg"
+                    className="relative z-10 max-w-5xl"
                 >
-                    Transforme Papel em<br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-300">Produtividade Digital</span>
-                </motion.h1>
-
-                <motion.p 
-                    initial={{ opacity: 0 }} 
-                    animate={{ opacity: 1 }} 
-                    transition={{ delay: 0.4 }} 
-                    className="mt-4 md:mt-6 max-w-xl md:max-w-2xl text-base md:text-xl text-gray-100"
-                >
-                    O <strong>SMD</strong> elimina processos manuais, reduz <strong className="text-emerald-400">80% do tempo</strong> em aprovações e garante <strong className="text-emerald-400">100% de rastreabilidade</strong>.
-                </motion.p>
-
-                <motion.div 
-                    initial={{ opacity: 0 }} 
-                    animate={{ opacity: 1 }} 
-                    transition={{ delay: 0.8 }} 
-                    className="mt-8 md:mt-10 flex flex-col sm:flex-row gap-4"
-                >
-                    <Button 
-                        variant="contained" 
-                        onClick={() => navigate('/login')}
-                        className="!bg-gradient-to-r !from-green-500 !to-emerald-400 hover:!from-green-400 hover:!to-emerald-300 !text-white !font-bold !text-lg !px-8 !py-3 !rounded-full !shadow-lg w-full sm:w-auto"
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.2, duration: 0.6 }}
+                        className="inline-block mb-6 px-4 py-2 bg-gradient-to-r from-accent-blue/10 to-accent-purple/10 rounded-full border border-accent-blue/20"
                     >
-                        Começar Gratuitamente
-                    </Button>
+                        <span className="text-accent-blue font-semibold text-sm md:text-base">✨ Transformando ideias em realidade digital</span>
+                    </motion.div>
 
-                    <Button 
-                        variant="outlined" 
-                        onClick={() => scrollToSection('como-funciona')}
-                        sx={{ 
-                            border: '2px solid rgba(255,255,255,0.6)', 
-                            color: 'white', 
-                            fontWeight: 'bold', 
-                            fontSize: '1.125rem',
-                            borderRadius: '9999px', 
-                            padding: '0.75rem 2rem', 
-                            '&:hover': { 
-                                backgroundColor: 'rgba(255,255,255,0.1)', 
-                                borderColor: 'white',
-                                border: '2px solid white'
-                            } 
-                        }} 
-                        className="w-full sm:w-auto"
-                    >
-                        Como Funciona
-                    </Button>
-                </motion.div>
-
-                <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1.2 }}
-                    className="mt-6 text-sm text-gray-300"
-                >
-                    ✓ Sem cartão de crédito &nbsp;•&nbsp; ✓ Configuração em 5 minutos
-                </motion.p>
-            </section>
-
-            {/* Estatísticas Section */}
-            <section className="py-16 md:py-20 bg-gradient-to-b from-gray-950 to-gray-900 px-4">
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, amount: 0.3 }}
-                    className="max-w-7xl mx-auto"
-                >
-                    <motion.h2 
-                        variants={itemVariants}
-                        className="text-3xl md:text-4xl font-bold text-center mb-12 text-white"
-                    >
-                        Resultados que <span className="text-green-400">Comprovam</span>
-                    </motion.h2>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <motion.div variants={itemVariants}>
-                            <StatCard
-                                icon={<FileText size={40} />}
-                                number="10.000+"
-                                label="Documentos Digitalizados"
-                                trend="+45% este mês"
+                    <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 text-brand-charcoal">
+                        Do Vazio da{" "}
+                        <span className="relative inline-block">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue via-accent-purple to-accent-cyan">
+                                Tela Branca
+                            </span>
+                            <motion.div
+                                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-accent-blue to-accent-purple rounded-full"
+                                initial={{ scaleX: 0 }}
+                                animate={{ scaleX: 1 }}
+                                transition={{ delay: 1, duration: 0.8 }}
                             />
-                        </motion.div>
-                        <motion.div variants={itemVariants}>
-                            <StatCard
-                                icon={<Users size={40} />}
-                                number="500+"
-                                label="Empresas Ativas"
-                                trend="+28% trimestre"
-                            />
-                        </motion.div>
-                        <motion.div variants={itemVariants}>
-                            <StatCard
-                                icon={<TrendingUp size={40} />}
-                                number="80%"
-                                label="Redução de Tempo"
-                                trend="↑ Economia média"
-                            />
-                        </motion.div>
-                        <motion.div variants={itemVariants}>
-                            <StatCard
-                                icon={<Shield size={40} />}
-                                number="100%"
-                                label="Dados Seguros"
-                                trend="✓ Criptografados"
-                            />
-                        </motion.div>
-                    </div>
-                </motion.div>
-            </section>
+                        </span>
+                        <br />
+                        ao Impacto Digital
+                    </h1>
 
-            {/* Benefícios Section - Redesenhado */}
-            <section className="py-16 md:py-20 bg-gradient-to-b from-gray-900 to-green-950/30 px-4">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white">
-                        Por Que Escolher o <span className="text-green-400">SMD</span>?
-                    </h2>
-                    <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
-                        Elimine papelada e processos manuais com uma solução completa e moderna
+                    <p className="text-xl md:text-2xl text-brand-darkgray mb-10 max-w-3xl mx-auto leading-relaxed">
+                        Criamos <strong className="text-accent-blue">sites de alta conversão</strong>,
+                        potencializamos sua <strong className="text-accent-purple">presença digital</strong> e
+                        automatizamos <strong className="text-accent-cyan">processos manuais</strong> para escalar seu negócio.
                     </p>
 
                     <motion.div
-                        variants={containerVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.6 }}
+                        className="flex flex-col sm:flex-row gap-4 justify-center items-center"
                     >
-                        <motion.div variants={itemVariants} className="group relative">
-                            {/* Glow effect */}
-                            <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity" />
-                            
-                            <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6">
-                                <div className="w-14 h-14 bg-gradient-to-br from-green-400 to-emerald-600 rounded-xl flex items-center justify-center mb-4">
-                                    <FileText className="text-white" size={28} />
-                                </div>
-                                
-                                <h3 className="text-xl font-bold mb-2 text-white">Formulários Digitais</h3>
-                                <p className="text-gray-300 mb-4">
-                                    Substitua formulários em papel por versões digitais interativas e rastreáveis.
-                                </p>
-                                
-                                <div className="flex items-center gap-2 text-emerald-400 font-semibold text-sm">
-                                    <TrendingUp size={18} />
-                                    <span>Redução de 90% no papel</span>
-                                </div>
-                            </div>
-                        </motion.div>
-
-                        <motion.div variants={itemVariants} className="group relative">
-                            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-cyan-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity" />
-                            
-                            <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6">
-                                <div className="w-14 h-14 bg-gradient-to-br from-blue-400 to-cyan-600 rounded-xl flex items-center justify-center mb-4">
-                                    <Clock className="text-white" size={28} />
-                                </div>
-                                
-                                <h3 className="text-xl font-bold mb-2 text-white">Mais Produtividade</h3>
-                                <p className="text-gray-300 mb-4">
-                                    Agilidade no preenchimento, aprovação e análise dos documentos em tempo real.
-                                </p>
-                                
-                                <div className="flex items-center gap-2 text-cyan-400 font-semibold text-sm">
-                                    <Zap size={18} />
-                                    <span>80% mais rápido</span>
-                                </div>
-                            </div>
-                        </motion.div>
-
-                        <motion.div variants={itemVariants} className="group relative">
-                            <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-500 rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity" />
-                            
-                            <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6">
-                                <div className="w-14 h-14 bg-gradient-to-br from-purple-400 to-pink-600 rounded-xl flex items-center justify-center mb-4">
-                                    <Users className="text-white" size={28} />
-                                </div>
-                                
-                                <h3 className="text-xl font-bold mb-2 text-white">Colaboração Segura</h3>
-                                <p className="text-gray-300 mb-4">
-                                    Administradores, gestores e colaboradores conectados em um único sistema.
-                                </p>
-                                
-                                <div className="flex items-center gap-2 text-pink-400 font-semibold text-sm">
-                                    <Shield size={18} />
-                                    <span>Criptografia total</span>
-                                </div>
-                            </div>
-                        </motion.div>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* Como Funciona - Timeline Section */}
-            <section id="como-funciona" className="py-16 md:py-20 bg-gradient-to-b from-green-950/30 to-gray-900 px-4">
-                <div className="max-w-5xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white">
-                        Como o <span className="text-green-400">SMD</span> Funciona
-                    </h2>
-                    <p className="text-center text-gray-400 mb-16 max-w-2xl mx-auto">
-                        Do papel à análise de dados em 5 passos simples
-                    </p>
-
-                    <div className="relative">
-                        {/* Linha conectora vertical */}
-                        <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-green-500 via-emerald-500 to-teal-500 hidden md:block" />
-                        
-                        <motion.div
-                            variants={containerVariants}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, amount: 0.1 }}
+                        <Button
+                            variant="contained"
+                            size="large"
+                            href="#servicos"
+                            endIcon={<ArrowRight />}
+                            className="!bg-gradient-to-r !from-accent-blue !to-accent-purple hover:!from-accent-blueHover hover:!to-accent-purpleHover !text-white !font-bold !text-lg !px-10 !py-4 !rounded-full !shadow-2xl hover:!shadow-accent-blue/50 !transition-all !normal-case w-full sm:w-auto"
                         >
-                            {steps.map((step, index) => (
-                                <StepCard key={index} step={step} index={index} />
-                            ))}
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
+                            Conheça Nossos Serviços
+                        </Button>
 
-            {/* Features Detalhadas Section */}
-            <section className="py-16 md:py-20 bg-gradient-to-b from-gray-900 to-gray-950 px-4">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white">
-                        Funcionalidades <span className="text-green-400">Completas</span>
-                    </h2>
-                    <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
-                        Tudo que você precisa para digitalizar seus processos
-                    </p>
-
-                    <motion.div
-                        variants={containerVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-                    >
-                        <motion.div variants={itemVariants}>
-                            <FeatureCard
-                                icon={<Layers className="text-white" size={24} />}
-                                title="Versionamento Automático"
-                                description="Controle de versões de documentos com histórico completo de alterações"
-                                color="from-blue-500 to-cyan-500"
-                            />
-                        </motion.div>
-
-                        <motion.div variants={itemVariants}>
-                            <FeatureCard
-                                icon={<Lock className="text-white" size={24} />}
-                                title="Segurança Total"
-                                description="Criptografia end-to-end e controle de acesso granular por perfil"
-                                color="from-green-500 to-emerald-500"
-                            />
-                        </motion.div>
-
-                        <motion.div variants={itemVariants}>
-                            <FeatureCard
-                                icon={<Zap className="text-white" size={24} />}
-                                title="Processos Ágeis"
-                                description="Automação de fluxos de aprovação com notificações em tempo real"
-                                color="from-yellow-500 to-orange-500"
-                            />
-                        </motion.div>
-
-                        <motion.div variants={itemVariants}>
-                            <FeatureCard
-                                icon={<Smartphone className="text-white" size={24} />}
-                                title="Acesso Mobile"
-                                description="Interface responsiva para trabalhar de qualquer dispositivo"
-                                color="from-purple-500 to-pink-500"
-                            />
-                        </motion.div>
-
-                        <motion.div variants={itemVariants}>
-                            <FeatureCard
-                                icon={<BarChart className="text-white" size={24} />}
-                                title="Relatórios em Tempo Real"
-                                description="Dashboard com métricas e indicadores de performance atualizados"
-                                color="from-red-500 to-rose-500"
-                            />
-                        </motion.div>
-
-                        <motion.div variants={itemVariants}>
-                            <FeatureCard
-                                icon={<Bell className="text-white" size={24} />}
-                                title="Notificações Inteligentes"
-                                description="Alertas automáticos para aprovações, prazos e atualizações"
-                                color="from-teal-500 to-cyan-500"
-                            />
-                        </motion.div>
+                        <Button
+                            variant="outlined"
+                            size="large"
+                            href="#contato"
+                            className="!border-2 !border-brand-darkgray !text-brand-charcoal hover:!bg-brand-lightgray !font-semibold !text-lg !px-10 !py-4 !rounded-full !normal-case w-full sm:w-auto"
+                        >
+                            Fale com a Gente
+                        </Button>
                     </motion.div>
-                </div>
+
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 1 }}
+                        className="mt-8 text-sm text-brand-darkgray flex items-center justify-center gap-2 flex-wrap"
+                    >
+                        <CheckCircle2 size={16} className="text-accent-blue" />
+                        <span>Consultoria gratuita</span>
+                        <span className="text-brand-gray">•</span>
+                        <CheckCircle2 size={16} className="text-accent-purple" />
+                        <span>Projetos personalizados</span>
+                        <span className="text-brand-gray">•</span>
+                        <CheckCircle2 size={16} className="text-accent-cyan" />
+                        <span>Suporte dedicado</span>
+                    </motion.p>
+                </motion.div>
             </section>
 
-            {/* Personas Section */}
-            <section className="py-16 md:py-20 bg-gradient-to-br from-gray-950 via-green-950 to-gray-950 px-4">
+            {/* Serviços Section */}
+            <section id="servicos" className="py-20 md:py-32 px-6 bg-white">
                 <div className="max-w-7xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white">
-                        Para Quem é o <span className="text-green-400">SMD</span>?
-                    </h2>
-                    <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
-                        Solução completa para todos os níveis da sua organização
-                    </p>
-
                     <motion.div
                         variants={containerVariants}
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.2 }}
+                        className="text-center mb-16"
+                    >
+                        <motion.h2
+                            variants={itemVariants}
+                            className="text-4xl md:text-5xl font-extrabold mb-4 text-brand-charcoal"
+                        >
+                            Nossos <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple">Serviços</span>
+                        </motion.h2>
+                        <motion.p
+                            variants={itemVariants}
+                            className="text-xl text-brand-darkgray max-w-2xl mx-auto"
+                        >
+                            Soluções digitais completas para transformar seu negócio
+                        </motion.p>
+                    </motion.div>
+
+                    <motion.div
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.1 }}
                         className="grid grid-cols-1 md:grid-cols-3 gap-8"
                     >
-                        {personas.map((persona, index) => (
-                            <motion.div key={index} variants={itemVariants}>
-                                <PersonaCard {...persona} />
+                        {services.map((service, index) => (
+                            <motion.div
+                                key={index}
+                                variants={itemVariants}
+                                whileHover={{ y: -10, transition: { duration: 0.3 } }}
+                                className="group relative bg-white rounded-3xl p-8 border border-brand-gray hover:border-transparent hover:shadow-2xl transition-all duration-300"
+                            >
+                                {/* Gradient border on hover */}
+                                <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity -z-10 blur-xl`} />
+
+                                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                                    {service.icon}
+                                </div>
+
+                                <h3 className="text-2xl font-bold mb-4 text-brand-charcoal group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-accent-blue group-hover:to-accent-purple transition-all">
+                                    {service.title}
+                                </h3>
+
+                                <p className="text-brand-darkgray mb-6 leading-relaxed">
+                                    {service.description}
+                                </p>
+
+                                <ul className="space-y-2">
+                                    {service.features.map((feature, idx) => (
+                                        <li key={idx} className="flex items-center gap-2 text-sm text-brand-darkgray">
+                                            <CheckCircle2 size={16} className="text-accent-blue flex-shrink-0" />
+                                            <span>{feature}</span>
+                                        </li>
+                                    ))}
+                                </ul>
                             </motion.div>
                         ))}
                     </motion.div>
                 </div>
             </section>
 
-            {/* Antes x Depois Section */}
-            <section className="py-16 md:py-20 bg-gradient-to-b from-gray-950 to-gray-900 px-4">
-                <div className="max-w-5xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white">
-                        Antes e Depois do <span className="text-green-400">SMD</span>
-                    </h2>
-                    <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
-                        Veja a transformação que o SMD traz para sua empresa
-                    </p>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {/* Coluna ANTES */}
-                        <motion.div
-                            initial={{ opacity: 0, x: -50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
-                            className="bg-red-950/20 border border-red-500/30 rounded-2xl p-8"
-                        >
-                            <h3 className="text-2xl font-bold mb-6 text-red-400 flex items-center gap-2">
-                                <X size={28} />
-                                Processos Manuais
-                            </h3>
-                            <ul className="space-y-4">
-                                <li className="flex items-start gap-3">
-                                    <X className="text-red-400 mt-1 flex-shrink-0" size={20} />
-                                    <span className="text-gray-300">Formulários impressos em pilhas de papel</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <X className="text-red-400 mt-1 flex-shrink-0" size={20} />
-                                    <span className="text-gray-300">Busca demorada de documentos arquivados</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <X className="text-red-400 mt-1 flex-shrink-0" size={20} />
-                                    <span className="text-gray-300">Erros de preenchimento sem validação</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <X className="text-red-400 mt-1 flex-shrink-0" size={20} />
-                                    <span className="text-gray-300">Sem rastreabilidade de mudanças</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <X className="text-red-400 mt-1 flex-shrink-0" size={20} />
-                                    <span className="text-gray-300">Análise manual e lenta de dados</span>
-                                </li>
-                            </ul>
-                        </motion.div>
-
-                        {/* Coluna DEPOIS */}
-                        <motion.div
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
-                            className="bg-green-950/20 border border-green-500/30 rounded-2xl p-8"
-                        >
-                            <h3 className="text-2xl font-bold mb-6 text-green-400 flex items-center gap-2">
-                                <Check size={28} />
-                                Com SMD
-                            </h3>
-                            <ul className="space-y-4">
-                                <li className="flex items-start gap-3">
-                                    <Check className="text-green-400 mt-1 flex-shrink-0" size={20} />
-                                    <span className="text-gray-300">Formulários digitais acessíveis de qualquer lugar</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <Check className="text-green-400 mt-1 flex-shrink-0" size={20} />
-                                    <span className="text-gray-300">Busca instantânea por qualquer campo</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <Check className="text-green-400 mt-1 flex-shrink-0" size={20} />
-                                    <span className="text-gray-300">Validação automática de dados em tempo real</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <Check className="text-green-400 mt-1 flex-shrink-0" size={20} />
-                                    <span className="text-gray-300">Histórico completo de versões e alterações</span>
-                                </li>
-                                <li className="flex items-start gap-3">
-                                    <Check className="text-green-400 mt-1 flex-shrink-0" size={20} />
-                                    <span className="text-gray-300">Relatórios automáticos e dashboards em tempo real</span>
-                                </li>
-                            </ul>
-                        </motion.div>
-                    </div>
+            {/* Diferencial Section */}
+            <section id="diferenciais" className="py-20 md:py-32 px-6 bg-gradient-to-br from-brand-lightgray via-brand-offwhite to-white relative overflow-hidden">
+                {/* Background pattern */}
+                <div className="absolute inset-0 opacity-5">
+                    <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, #2563EB 1px, transparent 1px)', backgroundSize: '50px 50px' }} />
                 </div>
-            </section>
 
-            {/* CTA Final Section */}
-            <section className="py-20 bg-gradient-to-r from-green-600 via-emerald-500 to-teal-600 px-4">
-                <div className="max-w-4xl mx-auto text-center">
+                <div className="max-w-7xl mx-auto relative z-10">
                     <motion.div
-                        initial={{ scale: 0.9, opacity: 0 }}
-                        whileInView={{ scale: 1, opacity: 1 }}
+                        variants={fadeInUp}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="text-center mb-16"
+                    >
+                        <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-brand-charcoal">
+                            Por Que Escolher a <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple">Tela Branca</span>?
+                        </h2>
+                        <p className="text-xl text-brand-darkgray max-w-2xl mx-auto">
+                            Transformamos processos manuais em soluções digitais de alto impacto
+                        </p>
+                    </motion.div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                        {differentials.map((diff, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.2, duration: 0.6 }}
+                                className="text-center"
+                            >
+                                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center text-white">
+                                    {diff.icon}
+                                </div>
+                                <h3 className="text-xl font-bold mb-2 text-brand-charcoal">{diff.title}</h3>
+                                <p className="text-brand-darkgray">{diff.description}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    {/* CTA Box */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
+                        className="bg-gradient-to-r from-accent-blue to-accent-purple rounded-3xl p-12 text-center text-white shadow-2xl"
                     >
-                        <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-white">
-                            Pronto para Eliminar o Papel?
-                        </h2>
-                        
-                        <p className="text-xl mb-8 text-white/90">
-                            Junte-se a <strong>centenas de empresas</strong> que já digitalizaram seus processos
+                        <h3 className="text-3xl md:text-4xl font-bold mb-4">
+                            Pronto para Transformar Seu Negócio?
+                        </h3>
+                        <p className="text-xl mb-8 opacity-90">
+                            Vamos conversar sobre como podemos ajudar você a alcançar seus objetivos digitais
                         </p>
-                        
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Button
-                                variant="contained"
-                                size="large"
-                                onClick={() => navigate('/login')}
-                                className="!bg-white !text-green-600 !font-bold !text-lg !px-8 !py-4 !rounded-full hover:!scale-105 transition-transform"
-                            >
-                                Começar Gratuitamente
-                            </Button>
-                            
-                            <Button
-                                variant="outlined"
-                                size="large"
-                                onClick={() => navigate('/dashboard')}
-                                sx={{
-                                    border: '2px solid white',
-                                    color: 'white',
-                                    fontWeight: 'bold',
-                                    fontSize: '1.125rem',
-                                    padding: '1rem 2rem',
-                                    borderRadius: '9999px',
-                                    '&:hover': {
-                                        backgroundColor: 'rgba(255,255,255,0.1)',
-                                        border: '2px solid white'
-                                    }
-                                }}
-                            >
-                                Ver Demonstração
-                            </Button>
-                        </div>
-                        
-                        <p className="mt-6 text-sm text-white/70">
-                            ✓ Sem cartão de crédito &nbsp;•&nbsp; ✓ Configuração em 5 minutos &nbsp;•&nbsp; ✓ Suporte dedicado
-                        </p>
+                        <Button
+                            variant="contained"
+                            size="large"
+                            href="#contato"
+                            className="!bg-white !text-accent-blue hover:!bg-brand-offwhite !font-bold !text-lg !px-10 !py-4 !rounded-full !shadow-xl !normal-case"
+                        >
+                            Agendar Consultoria Gratuita
+                        </Button>
                     </motion.div>
                 </div>
             </section>
 
-            {/* Footer Completo */}
-            <footer className="bg-gradient-to-br from-gray-950 via-green-950 to-gray-950 text-gray-300 pt-16 pb-8">
-                <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-                    {/* Coluna 1: Sobre */}
-                    <div>
-                        <h3 className="text-xl font-bold text-white mb-4">🌿 SMD</h3>
-                        <p className="text-sm mb-4 text-gray-400">
-                            Sistema de Manuais Digitais. Transformando processos manuais em fluxos digitais inteligentes.
-                        </p>
-                        <div className="flex gap-3">
-                            <a href="#" className="hover:text-green-400 transition-colors">
-                                <Twitter size={20} />
-                            </a>
-                            <a href="#" className="hover:text-green-400 transition-colors">
-                                <Linkedin size={20} />
-                            </a>
-                            <a href="https://github.com/lmateusfaria/estagio-supervisionado" target="_blank" rel="noopener noreferrer" className="hover:text-green-400 transition-colors">
-                                <Github size={20} />
-                            </a>
+            {/* Footer */}
+            <footer id="contato" className="bg-brand-charcoal text-white py-16 px-6">
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                        {/* Coluna 1: Sobre */}
+                        <div>
+                            <div className="flex items-center gap-2 mb-4">
+                                <div className="w-10 h-10 bg-gradient-to-br from-accent-blue to-accent-purple rounded-lg flex items-center justify-center">
+                                    <span className="text-white font-bold text-xl">TB</span>
+                                </div>
+                                <span className="text-2xl font-bold">Tela Branca</span>
+                            </div>
+                            <p className="text-gray-400 mb-6 leading-relaxed">
+                                Agência digital especializada em transformar o vazio da tela branca em soluções de alto impacto para o seu negócio.
+                            </p>
+                            <div className="flex gap-4">
+                                <a href="mailto:contato@telabranca.com" className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-accent-blue hover:to-accent-purple flex items-center justify-center transition-all">
+                                    <Mail size={20} />
+                                </a>
+                                <a href="#" className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-accent-blue hover:to-accent-purple flex items-center justify-center transition-all">
+                                    <Linkedin size={20} />
+                                </a>
+                                <a href="#" className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-accent-blue hover:to-accent-purple flex items-center justify-center transition-all">
+                                    <Instagram size={20} />
+                                </a>
+                                <a href="#" className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-accent-blue hover:to-accent-purple flex items-center justify-center transition-all">
+                                    <Twitter size={20} />
+                                </a>
+                            </div>
+                        </div>
+
+                        {/* Coluna 2: Serviços */}
+                        <div>
+                            <h4 className="text-lg font-bold mb-4">Nossos Serviços</h4>
+                            <ul className="space-y-2 text-gray-400">
+                                <li><a href="#servicos" className="hover:text-accent-blue transition-colors">Sites de Alta Conversão</a></li>
+                                <li><a href="#servicos" className="hover:text-accent-blue transition-colors">Presença Digital</a></li>
+                                <li><a href="#servicos" className="hover:text-accent-blue transition-colors">Automação de Processos</a></li>
+                                <li><a href="#servicos" className="hover:text-accent-blue transition-colors">Consultoria Digital</a></li>
+                            </ul>
+                        </div>
+
+                        {/* Coluna 3: Contato */}
+                        <div>
+                            <h4 className="text-lg font-bold mb-4">Entre em Contato</h4>
+                            <ul className="space-y-3 text-gray-400">
+                                <li className="flex items-start gap-2">
+                                    <Mail size={20} className="text-accent-blue mt-1 flex-shrink-0" />
+                                    <a href="mailto:contato@telabranca.com" className="hover:text-white transition-colors">
+                                        contato@telabranca.com
+                                    </a>
+                                </li>
+                                <li className="text-sm">
+                                    Horário de atendimento:<br />
+                                    Segunda a Sexta, 9h às 18h
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    
-                    {/* Coluna 2: Produto */}
-                    <div>
-                        <h4 className="font-semibold text-white mb-4">Produto</h4>
-                        <ul className="space-y-2 text-sm">
-                            <li><a href="#" className="hover:text-green-400 transition-colors">Funcionalidades</a></li>
-                            <li><a href="#" className="hover:text-green-400 transition-colors">Planos e Preços</a></li>
-                            <li><a href="#" className="hover:text-green-400 transition-colors">Segurança</a></li>
-                            <li><a href="#" className="hover:text-green-400 transition-colors">Integrações</a></li>
-                        </ul>
+
+                    <div className="pt-8 border-t border-white/10 text-center text-gray-400 text-sm">
+                        <p>© {new Date().getFullYear()} Agência Tela Branca. Todos os direitos reservados.</p>
                     </div>
-                    
-                    {/* Coluna 3: Recursos */}
-                    <div>
-                        <h4 className="font-semibold text-white mb-4">Recursos</h4>
-                        <ul className="space-y-2 text-sm">
-                            <li><a href="#" className="hover:text-green-400 transition-colors">Documentação</a></li>
-                            <li><a href="#" className="hover:text-green-400 transition-colors">Tutoriais</a></li>
-                            <li><a href="#" className="hover:text-green-400 transition-colors">Blog</a></li>
-                            <li><a href="#" className="hover:text-green-400 transition-colors">Suporte</a></li>
-                        </ul>
-                    </div>
-                    
-                    {/* Coluna 4: Empresa */}
-                    <div>
-                        <h4 className="font-semibold text-white mb-4">Empresa</h4>
-                        <ul className="space-y-2 text-sm">
-                            <li><a href="#" className="hover:text-green-400 transition-colors">Sobre Nós</a></li>
-                            <li><a href="#" className="hover:text-green-400 transition-colors">Contato</a></li>
-                            <li><a href="#" className="hover:text-green-400 transition-colors">Política de Privacidade</a></li>
-                            <li><a href="#" className="hover:text-green-400 transition-colors">Termos de Uso</a></li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div className="max-w-7xl mx-auto px-6 pt-8 border-t border-gray-800 text-center text-sm text-gray-400">
-                    <p>© 2025 Sistema de Manuais Digitais (SMD). Todos os direitos reservados.</p>
                 </div>
             </footer>
         </div>
