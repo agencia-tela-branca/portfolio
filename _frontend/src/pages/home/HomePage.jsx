@@ -1,12 +1,17 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 import {
     Globe, TrendingUp, Zap, ArrowRight,
     CheckCircle2, Sparkles, Rocket, Target,
-    Mail, Linkedin, Instagram, Twitter
+    Mail, Linkedin, Instagram, Twitter,
+    Menu, X
 } from "lucide-react";
 
 const HomePage = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     // Variantes de animação
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -42,23 +47,23 @@ const HomePage = () => {
         {
             icon: <Globe className="text-white" size={32} />,
             title: "Sites de Alta Conversão",
-            description: "Desenvolvemos sites modernos, responsivos e otimizados para converter visitantes em clientes. Design estratégico focado em resultados.",
+            description: "Desenvolvimento de sites modernos, responsivos e otimizados para converter visitantes em clientes. Design estratégico focado em resultados. Sistemas de PDV personalizados e eficientes. Aplicativos responsivos e modernos, entregamos ferramentas robustas que integram design estratégico e máxima performance para converter tráfego em receita real.",
             gradient: "from-accent-blue to-accent-cyan",
-            features: ["Design Responsivo", "SEO Otimizado", "Performance Máxima"]
+            features: ["Sistemas PDV Modernos", "SEO Otimizado", "Apps Customizados", "Design Orientado a Dados",]
         },
         {
             icon: <TrendingUp className="text-white" size={32} />,
             title: "Presença Digital Estratégica",
-            description: "Potencialize sua marca online com estratégias orgânicas e pagas que geram visibilidade, engajamento e crescimento sustentável.",
+            description: "Potencialize a transformação digital do seu negócio. Oferecemos uma sessão de diagnóstico para identificar como as novas tecnologias podem reduzir seus custos operacionais e escalar sua produtividade, também uma análise personalizada para identificar gargalos, otimizar processos e traçar metas de crescimento reais.",
             gradient: "from-accent-purple to-accent-blue",
-            features: ["Marketing Digital", "Gestão de Redes", "Análise de Dados"]
+            features: ["Auditoria de Stack", "Gestão de Redes", "Análise de Dados", "Escalabilidade"]
         },
         {
             icon: <Zap className="text-white" size={32} />,
             title: "Automação Inteligente",
-            description: "Transformamos processos manuais em fluxos digitais automatizados. Ganhe tempo, reduza erros e escale seu negócio com tecnologia.",
+            description: "Transformamos processos manuais em fluxos digitais automatizados. Ganhe tempo, reduza erros e escale seu negócio com tecnologia. Mantenha sua tecnologia sempre disponível e eficiente com o suporte de quem entende do seu projeto. Oferecemos acompanhamento contínuo para que sua tecnologia não apenas funcione, mas evolua junto com as demandas dos seus clientes.",
             gradient: "from-accent-cyan to-accent-purple",
-            features: ["Workflows Automatizados", "Integrações", "Eficiência Operacional"]
+            features: ["Atendimento Humanizado", "Evolução de Recursos", "Otimização com IA", "Eficiência Operacional"]
         }
     ];
 
@@ -98,10 +103,31 @@ const HomePage = () => {
                         animate={{ opacity: 1, x: 0 }}
                         className="flex items-center gap-2"
                     >
-                        <div className="w-10 h-10 bg-gradient-to-br from-accent-blue to-accent-purple rounded-lg flex items-center justify-center">
-                            <span className="text-white font-bold text-xl">TB</span>
-                        </div>
-                        <span className="text-xl font-bold text-brand-charcoal">Tela Branca</span>
+                        <Link
+                            to="/"
+                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                            className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+                        >
+                            <div className="w-12 h-10 bg-gradient-to-br from-accent-blue to-accent-purple rounded-lg flex items-center justify-center">
+                                <span className="text-white font-bold text-lg">ATB</span>
+                            </div>
+                            <span className="text-xl font-bold text-brand-charcoal">Agência Tela Branca</span>
+                        </Link>
+                    </motion.div>
+
+                    {/* Menu Mobile Button */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="md:hidden flex items-center"
+                    >
+                        <button
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            className="p-2 text-brand-charcoal hover:text-accent-blue transition-colors focus:outline-none"
+                            aria-label="Menu"
+                        >
+                            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+                        </button>
                     </motion.div>
 
                     <motion.div
@@ -111,15 +137,54 @@ const HomePage = () => {
                     >
                         <a href="#servicos" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Serviços</a>
                         <a href="#diferenciais" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Diferenciais</a>
-                        <Button
-                            variant="contained"
-                            href="#contato"
-                            className="!bg-gradient-to-r !from-accent-blue !to-accent-purple hover:!from-accent-blueHover hover:!to-accent-purpleHover !text-white !font-semibold !px-6 !py-2 !rounded-full !shadow-lg !normal-case"
-                        >
-                            Fale Conosco
-                        </Button>
+                        <motion.div whileHover={{ y: -5, transition: { duration: 0.3 } }}>
+                            <Button
+                                variant="contained"
+                                href="#contato"
+                                className="!bg-gradient-to-r !from-accent-blue !to-accent-purple hover:!from-accent-blueHover hover:!to-accent-purpleHover !text-white !font-semibold !px-6 !py-2 !rounded-full !shadow-lg !normal-case"
+                            >
+                                Fale Conosco
+                            </Button>
+                        </motion.div>
                     </motion.div>
                 </div>
+
+                {/* Mobile Menu Overlay */}
+                <AnimatePresence>
+                    {isMenuOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="md:hidden bg-white border-t border-brand-gray overflow-hidden"
+                        >
+                            <div className="flex flex-col p-6 gap-6 items-center text-center">
+                                <a
+                                    href="#servicos"
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className="text-lg font-medium text-brand-charcoal hover:text-accent-blue transition-colors"
+                                >
+                                    Serviços
+                                </a>
+                                <a
+                                    href="#diferenciais"
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className="text-lg font-medium text-brand-charcoal hover:text-accent-blue transition-colors"
+                                >
+                                    Diferenciais
+                                </a>
+                                <Button
+                                    variant="contained"
+                                    href="#contato"
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className="!bg-gradient-to-r !from-accent-blue !to-accent-purple !text-white !font-bold !py-3 !rounded-xl !normal-case !shadow-lg"
+                                >
+                                    Fale Conosco
+                                </Button>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </nav>
 
             {/* Hero Section */}
@@ -188,24 +253,19 @@ const HomePage = () => {
                         transition={{ delay: 0.6 }}
                         className="flex flex-col sm:flex-row gap-4 justify-center items-center"
                     >
-                        <Button
-                            variant="contained"
-                            size="large"
-                            href="#servicos"
-                            endIcon={<ArrowRight />}
-                            className="!bg-gradient-to-r !from-accent-blue !to-accent-purple hover:!from-accent-blueHover hover:!to-accent-purpleHover !text-white !font-bold !text-lg !px-10 !py-4 !rounded-full !shadow-2xl hover:!shadow-accent-blue/50 !transition-all !normal-case w-full sm:w-auto"
-                        >
-                            Conheça Nossos Serviços
-                        </Button>
+                        <motion.div whileHover={{ y: -5, transition: { duration: 0.3 } }} className="w-full sm:w-auto">
+                            <Button
+                                variant="contained"
+                                size="large"
+                                href="#servicos"
+                                endIcon={<ArrowRight />}
+                                className="!bg-gradient-to-r !from-accent-blue !to-accent-purple hover:!from-accent-blueHover hover:!to-accent-purpleHover !text-white !font-bold !text-lg !px-10 !py-4 !rounded-full !shadow-2xl hover:!shadow-accent-blue/50 !transition-all !normal-case w-full sm:w-auto"
+                            >
+                                Conheça Nossos Serviços
+                            </Button>
+                        </motion.div>
 
-                        <Button
-                            variant="outlined"
-                            size="large"
-                            href="#contato"
-                            className="!border-2 !border-brand-darkgray !text-brand-charcoal hover:!bg-brand-lightgray !font-semibold !text-lg !px-10 !py-4 !rounded-full !normal-case w-full sm:w-auto"
-                        >
-                            Fale com a Gente
-                        </Button>
+
                     </motion.div>
 
                     <motion.p
@@ -215,13 +275,13 @@ const HomePage = () => {
                         className="mt-8 text-sm text-brand-darkgray flex items-center justify-center gap-2 flex-wrap"
                     >
                         <CheckCircle2 size={16} className="text-accent-blue" />
-                        <span>Consultoria gratuita</span>
+                        <span>Projetos Tecnológicos Personalizados</span>
                         <span className="text-brand-gray">•</span>
                         <CheckCircle2 size={16} className="text-accent-purple" />
-                        <span>Projetos personalizados</span>
+                        <span>Consultoria Tecnológica Gratuita</span>
                         <span className="text-brand-gray">•</span>
                         <CheckCircle2 size={16} className="text-accent-cyan" />
-                        <span>Suporte dedicado</span>
+                        <span>Suporte Técnico Especializado</span>
                     </motion.p>
                 </motion.div>
             </section>
@@ -265,7 +325,7 @@ const HomePage = () => {
                                 className="group relative bg-white rounded-3xl p-8 border border-brand-gray hover:border-transparent hover:shadow-2xl transition-all duration-300"
                             >
                                 {/* Gradient border on hover */}
-                                <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity -z-10 blur-xl`} />
+                                <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-30 transition-opacity -z-10 blur-xl`} />
 
                                 <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
                                     {service.icon}
@@ -349,34 +409,30 @@ const HomePage = () => {
                         <p className="text-xl mb-8 opacity-90">
                             Vamos conversar sobre como podemos ajudar você a alcançar seus objetivos digitais
                         </p>
-                        <Button
-                            variant="contained"
-                            size="large"
-                            href="#contato"
-                            className="!bg-white !text-accent-blue hover:!bg-brand-offwhite !font-bold !text-lg !px-10 !py-4 !rounded-full !shadow-xl !normal-case"
-                        >
-                            Agendar Consultoria Gratuita
-                        </Button>
+                        <motion.div whileHover={{ y: -5, transition: { duration: 0.3 } }}>
+                            <Button
+                                variant="contained"
+                                size="large"
+                                href="#contato"
+                                className="!bg-white !text-accent-blue hover:!bg-brand-offwhite !font-bold !text-lg !px-10 !py-4 !rounded-full !shadow-xl !normal-case"
+                            >
+                                Agendar Consultoria Tecnológica Gratuita
+                            </Button>
+                        </motion.div>
                     </motion.div>
                 </div>
             </section>
 
             {/* Footer */}
-            <footer id="contato" className="bg-brand-charcoal text-white py-16 px-6">
+            <footer id="contato" className="bg-brand-charcoal text-white py-8 px-6">
                 <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                         {/* Coluna 1: Sobre */}
                         <div>
-                            <div className="flex items-center gap-2 mb-4">
-                                <div className="w-10 h-10 bg-gradient-to-br from-accent-blue to-accent-purple rounded-lg flex items-center justify-center">
-                                    <span className="text-white font-bold text-xl">TB</span>
-                                </div>
-                                <span className="text-2xl font-bold">Tela Branca</span>
-                            </div>
-                            <p className="text-gray-400 mb-6 leading-relaxed">
+                            <p className="text-gray-400 mb-4 leading-relaxed">
                                 Agência digital especializada em transformar o vazio da tela branca em soluções de alto impacto para o seu negócio.
                             </p>
-                            <div className="flex gap-4">
+                            <div className="flex gap-4 justify-center">
                                 <a href="mailto:contato@telabranca.com" className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-accent-blue hover:to-accent-purple flex items-center justify-center transition-all">
                                     <Mail size={20} />
                                 </a>
@@ -386,28 +442,23 @@ const HomePage = () => {
                                 <a href="#" className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-accent-blue hover:to-accent-purple flex items-center justify-center transition-all">
                                     <Instagram size={20} />
                                 </a>
-                                <a href="#" className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-accent-blue hover:to-accent-purple flex items-center justify-center transition-all">
-                                    <Twitter size={20} />
-                                </a>
                             </div>
                         </div>
 
-                        {/* Coluna 2: Serviços */}
-                        <div>
-                            <h4 className="text-lg font-bold mb-4">Nossos Serviços</h4>
+                        {/* Coluna 2: Links Úteis */}
+                        <div className="text-center">
+                            <h4 className="text-lg font-bold mb-4">Sobre Nós</h4>
                             <ul className="space-y-2 text-gray-400">
-                                <li><a href="#servicos" className="hover:text-accent-blue transition-colors">Sites de Alta Conversão</a></li>
-                                <li><a href="#servicos" className="hover:text-accent-blue transition-colors">Presença Digital</a></li>
-                                <li><a href="#servicos" className="hover:text-accent-blue transition-colors">Automação de Processos</a></li>
-                                <li><a href="#servicos" className="hover:text-accent-blue transition-colors">Consultoria Digital</a></li>
+                                <li><a href="#" className="hover:text-accent-blue transition-colors">Entre em contato com o suporte</a></li>
+                                <li><a href="#" className="hover:text-accent-blue transition-colors">Políticas de Privacidade</a></li>
                             </ul>
                         </div>
 
                         {/* Coluna 3: Contato */}
-                        <div>
+                        <div className="text-center md:text-left">
                             <h4 className="text-lg font-bold mb-4">Entre em Contato</h4>
                             <ul className="space-y-3 text-gray-400">
-                                <li className="flex items-start gap-2">
+                                <li className="flex items-start gap-2 justify-center md:justify-start">
                                     <Mail size={20} className="text-accent-blue mt-1 flex-shrink-0" />
                                     <a href="mailto:contato@telabranca.com" className="hover:text-white transition-colors">
                                         contato@telabranca.com
