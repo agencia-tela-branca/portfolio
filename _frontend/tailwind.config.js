@@ -17,40 +17,29 @@ export default {
         "gradient-slow": "gradient 12s ease infinite",
       },
       colors: {
-        // foco em tons de verde para sustentabilidade e melhoria de processos
-        primary: {
-          500: '#22c55e', // verde vibrante (legível em fundos claros)
-          600: '#16a34a',
-          700: '#15803d',
-          800: '#166534',
-          900: '#14532d',
+        // Paleta Agência Tela Branca - Minimalista e Moderna
+        // Branco como cor principal (representando a "tela branca")
+        brand: {
+          white: '#FFFFFF',
+          offwhite: '#FAFAFA',
+          lightgray: '#F5F5F5',
+          gray: '#E0E0E0',
+          darkgray: '#424242',
+          charcoal: '#212121',
+          black: '#000000',
         },
-        // variação complementar (emerald/teal) para contrastes e elementos secundários
-        secondary: {
-          500: '#10b981',
-          600: '#059669',
-          700: '#047857',
-          800: '#065f46',
-          900: '#064e3b',
-        },
-        // cor de destaque (accent) usada para chamadas de atenção
+        // Cores de destaque para CTAs e elementos interativos
         accent: {
-          500: '#f59e0b',
-          600: '#d97706',
+          blue: '#2563EB',      // Azul moderno e confiável
+          blueHover: '#1D4ED8',
+          purple: '#7C3AED',    // Roxo criativo
+          purpleHover: '#6D28D9',
+          cyan: '#06B6D4',      // Ciano tecnológico
+          cyanHover: '#0891B2',
         },
-        // tons neutros para superfícies, textos e contraste
-        neutral: {
-          50: '#f9faf9',
-          100: '#f3f7f2',
-          200: '#e6efe4',
-          300: '#cfe0c9',
-          400: '#9fc091',
-          500: '#68a162',
-          600: '#4e7a46',
-          700: '#34532f',
-          800: '#243d23',
-          900: '#0f1f12',
-        },
+        // Gradientes sugeridos (usar via bg-gradient-to-r)
+        // from-accent-blue to-accent-purple
+        // from-accent-cyan to-accent-blue
       },
       fontFamily: {
         sans: ['Roboto', 'ui-sans-serif', 'system-ui'],
