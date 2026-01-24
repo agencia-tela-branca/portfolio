@@ -268,21 +268,27 @@ const HomePage = () => {
 
                     </motion.div>
 
-                    <motion.p
+                    <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1 }}
-                        className="mt-8 text-sm text-brand-darkgray flex items-center justify-center gap-2 flex-wrap"
+                        className="mt-8 text-sm text-brand-darkgray flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6"
                     >
-                        <CheckCircle2 size={16} className="text-accent-blue" />
-                        <span>Projetos Tecnológicos Personalizados</span>
-                        <span className="text-brand-gray">•</span>
-                        <CheckCircle2 size={16} className="text-accent-purple" />
-                        <span>Consultoria Tecnológica Gratuita</span>
-                        <span className="text-brand-gray">•</span>
-                        <CheckCircle2 size={16} className="text-accent-cyan" />
-                        <span>Suporte Técnico Especializado</span>
-                    </motion.p>
+                        <div className="flex items-center gap-2">
+                            <CheckCircle2 size={16} className="text-accent-blue" />
+                            <span>Projetos Tecnológicos Personalizados</span>
+                        </div>
+                        <span className="hidden md:inline text-brand-gray items-center">•</span>
+                        <div className="flex items-center gap-2">
+                            <CheckCircle2 size={16} className="text-accent-purple" />
+                            <span>Consultoria Tecnológica Gratuita</span>
+                        </div>
+                        <span className="hidden md:inline text-brand-gray items-center">•</span>
+                        <div className="flex items-center gap-2">
+                            <CheckCircle2 size={16} className="text-accent-cyan" />
+                            <span>Suporte Técnico</span>
+                        </div>
+                    </motion.div>
                 </motion.div>
             </section>
 
@@ -401,12 +407,21 @@ const HomePage = () => {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="bg-gradient-to-r from-accent-blue to-accent-purple rounded-3xl p-12 text-center text-white shadow-2xl"
+                        className="rounded-4xl p-6 md:p-12 text-center border border-white/10 shadow-glass relative overflow-hidden"
+                        style={{
+                            background: 'rgba(255, 255, 255, 0.03) !important',
+                            backdropFilter: 'blur(16px) !important',
+                            WebkitBackdropFilter: 'blur(16px) !important'
+                        }}
                     >
-                        <h3 className="text-3xl md:text-4xl font-bold mb-4">
+                        {/* Camada de brilho sutil */}
+                        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+                        <div className="absolute inset-0 -z-10 bg-white/5" />
+
+                        <h3 className="text-3xl md:text-4xl font-extrabold mb-4 text-brand-charcoal">
                             Pronto para Transformar Seu Negócio?
                         </h3>
-                        <p className="text-xl mb-8 opacity-90">
+                        <p className="text-xl mb-8 text-brand-darkgray font-medium">
                             Vamos conversar sobre como podemos ajudar você a alcançar seus objetivos digitais
                         </p>
                         <motion.div whileHover={{ y: -5, transition: { duration: 0.3 } }}>
@@ -414,7 +429,7 @@ const HomePage = () => {
                                 variant="contained"
                                 size="large"
                                 href="#contato"
-                                className="!bg-white !text-accent-blue hover:!bg-brand-offwhite !font-bold !text-lg !px-10 !py-4 !rounded-full !shadow-xl !normal-case"
+                                className="!bg-gradient-to-r !from-accent-blue !to-accent-purple hover:!scale-105 !text-white !font-bold !text-sm sm:!text-base md:!text-lg !px-4 sm:!px-6 md:!px-10 !py-4 !rounded-full !shadow-xl !transition-all !normal-case"
                             >
                                 Agendar Consultoria Tecnológica Gratuita
                             </Button>
