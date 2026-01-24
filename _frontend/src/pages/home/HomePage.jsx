@@ -123,7 +123,7 @@ const HomePage = () => {
                     >
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className="p-2 text-brand-charcoal hover:text-accent-blue transition-colors focus:outline-none"
+                            className="p-2 text-brand-charcoal hover:text-accent-blue transition-colors focus:outline-none bg-transparent border-none outline-none ring-0 appearance-none"
                             aria-label="Menu"
                         >
                             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
