@@ -14,6 +14,7 @@ import DocumentosPage from "./pages/documentos/DocumentosPage";
 import DocumentoFormPage from "./pages/documentos/DocumentoFormPage";
 import RelatoriosPage from "./pages/relatorios/RelatoriosPage";
 import ConfigPage from "./pages/config/ConfigPage";
+import QuemSomosPage from "./pages/quem-somos/QuemSomosPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
 
@@ -21,6 +22,7 @@ function App() {
     return (
         <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/quem-somos" element={<QuemSomosPage />} />
 
             {/* Login não acessível se já estiver logado */}
             <Route
@@ -81,14 +83,14 @@ function App() {
                     </ProtectedRoute>
                 }
             />
-                <Route
-                    path="/fluxos/:id/documentos"
-                    element={
-                        <ProtectedRoute>
-                            <FluxoDocumentos />
-                        </ProtectedRoute>
-                    }
-                />
+            <Route
+                path="/fluxos/:id/documentos"
+                element={
+                    <ProtectedRoute>
+                        <FluxoDocumentos />
+                    </ProtectedRoute>
+                }
+            />
             <Route
                 path="/relatorios"
                 element={

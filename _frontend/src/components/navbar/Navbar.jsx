@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { Button } from "@mui/material";
-import { Menu, Home, LogIn, Info, Mail, FileText } from "lucide-react";
+import { Menu, Home, LogIn, Info, Mail, FileText, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import MobileDrawer from "./MobileDrawer";
 
@@ -30,6 +30,7 @@ const Navbar = () => {
     // Links para mobile drawer - contexto PUBLIC
     const mobileLinks = [
         { path: '/', label: 'Início', icon: <Home size={20} /> },
+        { path: '/quem-somos', label: 'Quem somos', icon: <Users size={20} /> },
         { path: '/login', label: 'Login', icon: <LogIn size={20} /> },
         { path: '#', label: 'Sobre', icon: <Info size={20} /> },
         { path: '#', label: 'Funcionalidades', icon: <FileText size={20} /> },
@@ -39,6 +40,7 @@ const Navbar = () => {
     // Desktop navigation links
     const desktopLinks = [
         { path: '/', label: 'Início' },
+        { path: '/quem-somos', label: 'Quem somos' },
     ];
 
     const isActivePath = (path) => location.pathname === path;
@@ -49,11 +51,10 @@ const Navbar = () => {
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.5 }}
-                className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-                    isScrolled
-                        ? 'bg-green-900/90 backdrop-blur-md shadow-lg'
-                        : 'bg-green-900/70 backdrop-blur-md shadow-lg'
-                }`}
+                className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled
+                    ? 'bg-green-900/90 backdrop-blur-md shadow-lg'
+                    : 'bg-green-900/70 backdrop-blur-md shadow-lg'
+                    }`}
             >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center py-4">
@@ -77,9 +78,8 @@ const Navbar = () => {
                                 <Link
                                     key={link.path}
                                     to={link.path}
-                                    className={`relative text-white hover:text-emerald-300 transition-colors font-medium ${
-                                        isActivePath(link.path) ? 'text-emerald-300' : ''
-                                    }`}
+                                    className={`relative text-white hover:text-emerald-300 transition-colors font-medium ${isActivePath(link.path) ? 'text-emerald-300' : ''
+                                        }`}
                                 >
                                     {link.label}
                                     {isActivePath(link.path) && (

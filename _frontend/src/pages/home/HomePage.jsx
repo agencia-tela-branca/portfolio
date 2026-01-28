@@ -6,11 +6,21 @@ import {
     Globe, TrendingUp, Zap, ArrowRight,
     CheckCircle2, Sparkles, Rocket, Target,
     Mail, Linkedin, Instagram, Twitter,
-    Menu, X
+    Menu, X, Shield
 } from "lucide-react";
+import { useEffect } from "react";
 
 const HomePage = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     // Variantes de animação
     const containerVariants = {
@@ -96,7 +106,7 @@ const HomePage = () => {
     return (
         <div className="min-h-screen flex flex-col bg-white">
             {/* Navbar Minimalista */}
-            <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-brand-gray">
+            <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/30 backdrop-blur-md border-b border-white/20 shadow-sm' : 'bg-transparent'}`}>
                 <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
@@ -137,6 +147,7 @@ const HomePage = () => {
                     >
                         <a href="#servicos" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Serviços</a>
                         <a href="#diferenciais" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Diferenciais</a>
+                        <Link to="/quem-somos" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Quem somos</Link>
                         <motion.div whileHover={{ y: -5, transition: { duration: 0.3 } }}>
                             <Button
                                 variant="contained"
@@ -173,6 +184,13 @@ const HomePage = () => {
                                 >
                                     Diferenciais
                                 </a>
+                                <Link
+                                    to="/quem-somos"
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className="text-lg font-medium text-brand-charcoal hover:text-accent-blue transition-colors"
+                                >
+                                    Quem somos
+                                </Link>
                                 <Button
                                     variant="contained"
                                     href="#contato"
@@ -286,7 +304,7 @@ const HomePage = () => {
                         <span className="hidden md:inline text-brand-gray items-center">•</span>
                         <div className="flex items-center gap-2">
                             <CheckCircle2 size={16} className="text-accent-cyan" />
-                            <span>Suporte Técnico</span>
+                            <span>Suporte Técnico Especializado</span>
                         </div>
                     </motion.div>
                 </motion.div>
@@ -439,13 +457,15 @@ const HomePage = () => {
             </section>
 
             {/* Footer */}
-            <footer id="contato" className="bg-brand-charcoal text-white py-8 px-6">
+            <footer id="contato" className="bg-gray-900 text-white py-8 px-6">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                         {/* Coluna 1: Sobre */}
-                        <div>
-                            <p className="text-gray-400 mb-4 leading-relaxed">
-                                Agência digital especializada em transformar o vazio da tela branca em soluções de alto impacto para o seu negócio.
+                        <div className="text-center md:text-left flex flex-col items-center">
+                            <p className="text-gray-400 mb-4 leading-relaxed text-center">
+                                Agência digital especializada em transformar<br />
+                                o vazio da tela branca em soluções de<br />
+                                alto impacto para o seu negócio.
                             </p>
                             <div className="flex gap-4 justify-center">
                                 <a href="mailto:contato@telabranca.com" className="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-r hover:from-accent-blue hover:to-accent-purple flex items-center justify-center transition-all">
@@ -462,26 +482,34 @@ const HomePage = () => {
 
                         {/* Coluna 2: Links Úteis */}
                         <div className="text-center">
-                            <h4 className="text-lg font-bold mb-4">Sobre Nós</h4>
+                            <h4 className="text-lg font-bold mb-4">SOBRE NÓS:</h4>
                             <ul className="space-y-2 text-gray-400">
-                                <li><a href="#" className="hover:text-accent-blue transition-colors">Entre em contato com o suporte</a></li>
-                                <li><a href="#" className="hover:text-accent-blue transition-colors">Políticas de Privacidade</a></li>
+                                <li>
+                                    Horário de atendimento:<br />
+                                    Segunda a Sexta, 9h às 18h
+                                </li>
+                                <li className="flex items-center gap-2 justify-center">
+                                    <Shield size={16} className="text-gray-400" />
+                                    <a href="#" className="hover:text-accent-blue transition-colors">Políticas de Privacidade</a>
+                                </li>
                             </ul>
                         </div>
 
                         {/* Coluna 3: Contato */}
-                        <div className="text-center md:text-left">
-                            <h4 className="text-lg font-bold mb-4">Entre em Contato</h4>
+                        <div className="text-center">
+                            <h4 className="text-lg font-bold mb-4">CONTATO:</h4>
                             <ul className="space-y-3 text-gray-400">
-                                <li className="flex items-start gap-2 justify-center md:justify-start">
+                                <li className="flex items-start gap-2 justify-center">
                                     <Mail size={20} className="text-accent-blue mt-1 flex-shrink-0" />
                                     <a href="mailto:contato@telabranca.com" className="hover:text-white transition-colors">
                                         contato@telabranca.com
                                     </a>
                                 </li>
-                                <li className="text-sm">
-                                    Horário de atendimento:<br />
-                                    Segunda a Sexta, 9h às 18h
+                                <li className="flex items-center gap-2 justify-center">
+                                    <Zap size={20} className="text-accent-blue flex-shrink-0" />
+                                    <a href="#" className="hover:text-accent-blue transition-colors">
+                                        Entre em contato com o suporte
+                                    </a>
                                 </li>
                             </ul>
                         </div>
