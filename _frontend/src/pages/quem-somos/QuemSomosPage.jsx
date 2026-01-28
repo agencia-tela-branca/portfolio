@@ -46,26 +46,29 @@ const QuemSomosPage = () => {
             icon: <Target className="text-white" size={32} />,
             title: "Nossa Missão",
             description: "Transformar a visão de nossos clientes em realidades digitais impactantes, removendo as barreiras técnicas e focando no que realmente importa: resultados.",
-            gradient: "from-accent-blue to-accent-cyan"
+            gradient: "from-accent-blue to-accent-cyan",
+            cardGradient: "from-accent-blue/30 to-accent-cyan/30"
         },
         {
             icon: <Sparkles className="text-white" size={32} />,
             title: "Nossa Visão",
             description: "Ser a referência em inovação digital, reconhecida pela excelência em design, performance e humanização tecnológica em cada projeto.",
-            gradient: "from-accent-purple to-accent-blue"
+            gradient: "from-accent-purple to-accent-blue",
+            cardGradient: "from-accent-purple/30 to-accent-blue/30"
         },
         {
             icon: <Heart className="text-white" size={32} />,
             title: "Nossos Valores",
             description: "Transparência total, compromisso com o sucesso do cliente, agilidade constante e a busca incessante pela perfeição nos detalhes.",
-            gradient: "from-accent-cyan to-accent-purple"
+            gradient: "from-accent-cyan to-accent-purple",
+            cardGradient: "from-accent-cyan/30 to-accent-purple/30"
         }
     ];
 
     return (
         <div className="min-h-screen flex flex-col bg-white">
             {/* Navbar Minimalista (Replicated from HomePage for consistency) */}
-            <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/30 backdrop-blur-md border-b border-white/20 shadow-sm' : 'bg-transparent'}`}>
+            <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-brand-gray ${isScrolled ? 'bg-white/30 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}>
                 <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
@@ -213,9 +216,12 @@ const QuemSomosPage = () => {
                                 key={index}
                                 variants={itemVariants}
                                 whileHover={{ y: -10 }}
-                                className="bg-white rounded-3xl p-8 shadow-sm border border-brand-gray hover:shadow-xl transition-all duration-300"
+                                className="group relative bg-white rounded-3xl p-8 shadow-sm border border-brand-gray hover:border-transparent hover:shadow-2xl transition-all duration-300"
                             >
-                                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-6`}>
+                                {/* Gradient background on hover */}
+                                <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-30 transition-opacity -z-10`} />
+
+                                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
                                     {item.icon}
                                 </div>
                                 <h3 className="text-2xl font-bold mb-4 text-brand-charcoal">{item.title}</h3>

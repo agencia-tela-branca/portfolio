@@ -106,7 +106,7 @@ const HomePage = () => {
     return (
         <div className="min-h-screen flex flex-col bg-white">
             {/* Navbar Minimalista */}
-            <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/30 backdrop-blur-md border-b border-white/20 shadow-sm' : 'bg-transparent'}`}>
+            <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-brand-gray ${isScrolled ? 'bg-white/30 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}>
                 <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
