@@ -15,6 +15,7 @@ import DocumentoFormPage from "./pages/documentos/DocumentoFormPage";
 import RelatoriosPage from "./pages/relatorios/RelatoriosPage";
 import ConfigPage from "./pages/config/ConfigPage";
 import QuemSomosPage from "./pages/quem-somos/QuemSomosPage";
+import NossosSistemasPage from "./pages/nossos-sistemas/NossosSistemasPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
 
@@ -23,6 +24,7 @@ function App() {
         <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/quem-somos" element={<QuemSomosPage />} />
+            <Route path="/nossos-sistemas" element={<NossosSistemasPage />} />
 
             {/* Login não acessível se já estiver logado */}
             <Route

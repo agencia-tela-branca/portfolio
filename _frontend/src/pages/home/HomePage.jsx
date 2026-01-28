@@ -146,7 +146,7 @@ const HomePage = () => {
                         className="hidden md:flex items-center gap-8"
                     >
                         <a href="#servicos" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Serviços</a>
-                        <a href="#diferenciais" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Diferenciais</a>
+                        <Link to="/nossos-sistemas" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Nossos Sistemas</Link>
                         <Link to="/quem-somos" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Quem somos</Link>
                         <motion.div whileHover={{ y: -5, transition: { duration: 0.3 } }}>
                             <Button
@@ -378,83 +378,8 @@ const HomePage = () => {
             </section>
 
             {/* Diferencial Section */}
-            <section id="diferenciais" className="py-20 md:py-32 px-6 bg-gradient-to-br from-brand-lightgray via-brand-offwhite to-white relative overflow-hidden">
-                {/* Background pattern */}
-                <div className="absolute inset-0 opacity-5">
-                    <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle, #2563EB 1px, transparent 1px)', backgroundSize: '50px 50px' }} />
-                </div>
+            {/* SEÇÃO DIFERENCIAIS REMOVIDA - CONTEÚDO MOVIDO PARA /nossos-sistemas */}
 
-                <div className="max-w-7xl mx-auto relative z-10">
-                    <motion.div
-                        variants={fadeInUp}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        className="text-center mb-16"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-brand-charcoal">
-                            Por Que Escolher a <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple">Tela Branca</span>?
-                        </h2>
-                        <p className="text-xl text-brand-darkgray max-w-2xl mx-auto">
-                            Transformamos processos manuais em soluções digitais de alto impacto
-                        </p>
-                    </motion.div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                        {differentials.map((diff, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.2, duration: 0.6 }}
-                                className="text-center"
-                            >
-                                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center text-white">
-                                    {diff.icon}
-                                </div>
-                                <h3 className="text-xl font-bold mb-2 text-brand-charcoal">{diff.title}</h3>
-                                <p className="text-brand-darkgray">{diff.description}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-
-                    {/* CTA Box */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="rounded-4xl p-6 md:p-12 text-center border border-white/10 shadow-glass relative overflow-hidden"
-                        style={{
-                            background: 'rgba(255, 255, 255, 0.03) !important',
-                            backdropFilter: 'blur(16px) !important',
-                            WebkitBackdropFilter: 'blur(16px) !important'
-                        }}
-                    >
-                        {/* Camada de brilho sutil */}
-                        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-                        <div className="absolute inset-0 -z-10 bg-white/5" />
-
-                        <h3 className="text-3xl md:text-4xl font-extrabold mb-4 text-brand-charcoal">
-                            Pronto para Transformar Seu Negócio?
-                        </h3>
-                        <p className="text-xl mb-8 text-brand-darkgray font-medium">
-                            Vamos conversar sobre como podemos ajudar você a alcançar seus objetivos digitais
-                        </p>
-                        <motion.div whileHover={{ y: -5, transition: { duration: 0.3 } }}>
-                            <Button
-                                variant="contained"
-                                size="large"
-                                href="#contato"
-                                className="!bg-gradient-to-r !from-accent-blue !to-accent-purple hover:!scale-105 !text-white !font-bold !text-sm sm:!text-base md:!text-lg !px-4 sm:!px-6 md:!px-10 !py-4 !rounded-full !shadow-xl !transition-all !normal-case"
-                            >
-                                Agendar Consultoria Tecnológica Gratuita
-                            </Button>
-                        </motion.div>
-                    </motion.div>
-                </div>
-            </section>
 
             {/* Footer */}
             <footer id="contato" className="bg-gray-900 text-white py-8 px-6">

@@ -98,7 +98,7 @@ const QuemSomosPage = () => {
                     <div className="hidden md:flex items-center gap-8">
                         <Link to="/" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Início</Link>
                         <a href="/#servicos" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Serviços</a>
-                        <a href="/#diferenciais" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Diferenciais</a>
+                        <Link to="/nossos-sistemas" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Nossos Sistemas</Link>
                         <Link to="/quem-somos" className="text-accent-blue hover:text-accent-blueHover transition-colors font-medium">Quem somos</Link>
                         <motion.div whileHover={{ y: -5, transition: { duration: 0.3 } }}>
                             <Button
@@ -122,7 +122,7 @@ const QuemSomosPage = () => {
                         <div className="flex flex-col p-6 gap-6 items-center text-center">
                             <Link to="/" onClick={() => setIsMenuOpen(false)} className="text-lg font-medium text-brand-charcoal hover:text-accent-blue">Início</Link>
                             <a href="/#servicos" onClick={() => setIsMenuOpen(false)} className="text-lg font-medium text-brand-charcoal hover:text-accent-blue">Serviços</a>
-                            <a href="/#diferenciais" onClick={() => setIsMenuOpen(false)} className="text-lg font-medium text-brand-charcoal hover:text-accent-blue">Diferenciais</a>
+                            <Link to="/nossos-sistemas" onClick={() => setIsMenuOpen(false)} className="text-lg font-medium text-brand-charcoal hover:text-accent-blue">Nossos Sistemas</Link>
                             <Link to="/quem-somos" onClick={() => setIsMenuOpen(false)} className="text-lg font-medium text-accent-blue">Quem somos</Link>
                             <Button
                                 variant="contained"
