@@ -377,8 +377,71 @@ const HomePage = () => {
                 </div>
             </section>
 
-            {/* Diferencial Section */}
-            {/* SEÇÃO DIFERENCIAIS REMOVIDA - CONTEÚDO MOVIDO PARA /nossos-sistemas */}
+            {/* Diferenciais Section */}
+            <section className="py-20 px-6 bg-white">
+                <div className="max-w-7xl mx-auto">
+                    <motion.div
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.2 }}
+                        className="text-center mb-16"
+                    >
+                        <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-brand-charcoal">
+                            Por Que Escolher a <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple">Tela Branca?</span>
+                        </h2>
+                        <p className="text-xl text-brand-darkgray max-w-2xl mx-auto">
+                            Transformamos processos manuais em soluções digitais de alto impacto
+                        </p>
+                    </motion.div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
+                        {differentials.map((item, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.2 }}
+                                className="flex flex-col items-center text-center"
+                            >
+                                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center mb-6 text-white shadow-lg mx-auto">
+                                    {item.icon}
+                                </div>
+                                <h3 className="text-xl font-bold mb-3 text-brand-charcoal">
+                                    {item.title}
+                                </h3>
+                                <p className="text-brand-darkgray leading-relaxed max-w-xs mx-auto">
+                                    {item.description}
+                                </p>
+                            </motion.div>
+                        ))}
+                    </div>
+
+                    {/* CTA Section */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        className="max-w-4xl mx-auto bg-gradient-to-r from-[#2563EB] to-[#7C3AED] rounded-[3rem] p-10 md:p-12 text-center text-white shadow-2xl relative overflow-hidden"
+                    >
+                        <div className="relative z-10">
+                            <h2 className="text-3xl md:text-4xl font-extrabold mb-6">
+                                Pronto para Transformar Seu Negócio?
+                            </h2>
+                            <p className="text-lg md:text-xl text-white/90 mb-8 max-w-xl mx-auto">
+                                Vamos conversar sobre como podemos ajudar você a alcançar seus objetivos digitais
+                            </p>
+                            <Button
+                                variant="contained"
+                                size="large"
+                                href="#contato"
+                                className="!bg-white !text-accent-blue !font-bold !text-lg !px-8 !py-3 !rounded-full !shadow-lg hover:!bg-gray-100 !transform hover:!scale-105 !transition-all !normal-case"
+                            >
+                                Agendar Consultoria Tecnológica Gratuita
+                            </Button>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
 
 
             {/* Footer */}

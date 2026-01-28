@@ -41,22 +41,32 @@ const NossosSistemasPage = () => {
     // Dados placeholder baseados em "Diferenciais" e "Serviços" para preencher a página
     const systems = [
         {
-            title: "Sistemas PDV",
-            description: "Soluções completas para Ponto de Venda, integrando vendas, estoque e financeiro em uma única plataforma intuitiva.",
+            title: "Sistema PDV (Ponto de Venda)",
+            description: "Solução para varejo físico, unificando vendas, estoque e emissão de notas.",
             icon: <Target size={32} className="text-white" />,
-            features: ["Controle de Estoque Real-time", "Emissão de Notas Fiscais", "Relatórios Gerenciais"]
+            gradient: "from-accent-blue to-accent-cyan",
+            features: ["Vendas Ágeis", "Controle de Estoque", "Emissão Fiscal NFC-e/NF-e"]
         },
         {
-            title: "Gestão Empresarial (ERP)",
-            description: "Centralize toda a operação da sua empresa. Do comercial ao financeiro, tenha o controle total na palma da mão.",
+            title: "Plataformas SaaS",
+            description: "Desenvolvimento de plataformas completas para ideias de negócio baseadas em assinatura.",
+            icon: <Rocket size={32} className="text-white" />,
+            gradient: "from-accent-purple to-accent-blue",
+            features: ["Pagamentos Recorrentes", "Painel Administrativo", "Escalabilidade na Nuvem"]
+        },
+        {
+            title: "Sistema de Gestão (ERP)",
+            description: "Solução integrada para unificar financeiro, estoque, vendas e outras áreas da empresa.",
             icon: <TrendingUp size={32} className="text-white" />,
-            features: ["Fluxo de Caixa", "Gestão de Clientes (CRM)", "Automação de Processos"]
+            gradient: "from-accent-cyan to-accent-purple",
+            features: ["Gestão Financeira", "Relatórios Completos", "Integração Bancária"]
         },
         {
             title: "E-commerce Integrado",
-            description: "Sua loja física e virtual conectadas. Venda em múltiplos canais com estoque unificado.",
+            description: "Criação de lojas virtuais de alta performance, integradas com sistemas de estoque e PDV.",
             icon: <Globe size={32} className="text-white" />,
-            features: ["Sincronização de Estoque", "Painel Único", "Integração Logística"]
+            gradient: "from-accent-blue to-accent-purple",
+            features: ["Catálogo Online", "Meios de Pagamento", "Sincronização de Pedidos"]
         }
     ];
 
@@ -168,28 +178,32 @@ const NossosSistemasPage = () => {
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
-                        className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                        className="grid grid-cols-1 md:grid-cols-2 gap-8"
                     >
                         {systems.map((system, index) => (
                             <motion.div
                                 key={index}
                                 variants={itemVariants}
-                                className="bg-white p-8 rounded-2xl border border-brand-gray hover:border-accent-blue/30 hover:shadow-xl transition-all duration-300 group"
+                                whileHover={{ y: -10, transition: { duration: 0.3 } }}
+                                className="group relative bg-transparent rounded-3xl p-8 border border-brand-gray transition-all duration-300"
                             >
-                                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-accent-blue/20`}>
+                                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${system.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
                                     {system.icon}
                                 </div>
-                                <h3 className="text-2xl font-bold text-brand-charcoal mb-4 group-hover:text-accent-blue transition-colors">
+
+                                <h3 className="text-2xl font-bold mb-4 text-brand-charcoal group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-accent-blue group-hover:to-accent-purple transition-all">
                                     {system.title}
                                 </h3>
-                                <p className="text-gray-500 mb-6 leading-relaxed">
+
+                                <p className="text-brand-darkgray mb-6 leading-relaxed">
                                     {system.description}
                                 </p>
-                                <ul className="space-y-3">
+
+                                <ul className="space-y-2">
                                     {system.features.map((feature, idx) => (
-                                        <li key={idx} className="flex items-center gap-3 text-gray-600">
-                                            <CheckCircle2 size={18} className="text-green-500 flex-shrink-0" />
-                                            <span className="text-sm font-medium">{feature}</span>
+                                        <li key={idx} className="flex items-center gap-2 text-sm text-brand-darkgray">
+                                            <CheckCircle2 size={16} className="text-accent-blue flex-shrink-0" />
+                                            <span>{feature}</span>
                                         </li>
                                     ))}
                                 </ul>
