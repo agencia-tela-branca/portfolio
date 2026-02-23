@@ -1,21 +1,6 @@
 version: '3.8'
 
 services:
-  portfolio-backend:
-    image: agenciatelabranca/portfolio-backend:latest
-    container_name: portfolio-backend
-    ports:
-      - "8081:8080"
-    environment:
-      - SPRING_PROFILES_ACTIVE=prod
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://atb-db-postgres:5432/portfolio_agenciatelabranca
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=postdba
-    networks:
-      - default
-      - infra_network
-    restart: always
-
   portfolio-frontend:
     image: agenciatelabranca/portfolio-frontend:latest
     container_name: portfolio-frontend

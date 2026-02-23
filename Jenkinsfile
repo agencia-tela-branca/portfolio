@@ -24,13 +24,10 @@ pipeline {
                         // Login no Docker Hub
                         sh "echo \$DOCKER_PASS | docker login -u \$DOCKER_USER --password-stdin"
                         
-                        // Build das Imagens
-                        sh "docker build --no-cache -t ${BACKEND_IMAGE}:${tag} -t ${BACKEND_IMAGE}:latest ./_backend"
+                        // Build da Imagem Frontend
                         sh "docker build --no-cache -t ${FRONTEND_IMAGE}:${tag} -t ${FRONTEND_IMAGE}:latest ./_frontend"
                         
-                        // Push das Imagens
-                        sh "docker push ${BACKEND_IMAGE}:${tag}"
-                        sh "docker push ${BACKEND_IMAGE}:latest"
+                        // Push da Imagem Frontend
                         sh "docker push ${FRONTEND_IMAGE}:${tag}"
                         sh "docker push ${FRONTEND_IMAGE}:latest"
                     }
