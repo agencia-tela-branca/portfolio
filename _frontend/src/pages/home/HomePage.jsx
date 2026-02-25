@@ -77,6 +77,37 @@ const HomePage = () => {
         }
     ];
 
+    const systems = [
+        {
+            title: "Sistema PDV (Ponto de Venda)",
+            description: "Solução robusta para gestão de lojas e prestadores de serviços, unificando vendas, estoque e agenda.",
+            icon: <Target size={32} className="text-white" />,
+            gradient: "from-accent-blue to-accent-cyan",
+            features: ["Vendas Ultra Ágeis", "Gestão de Comandas", "Controle de Estoque Real"]
+        },
+        {
+            title: "Plataformas SaaS",
+            description: "Desenvolvimento de plataformas completas para ideias de negócio baseadas em assinatura.",
+            icon: <Rocket size={32} className="text-white" />,
+            gradient: "from-accent-purple to-accent-blue",
+            features: ["Pagamentos Recorrentes", "Painel Administrativo", "Escalabilidade na Nuvem"]
+        },
+        {
+            title: "Sistema de Gestão (ERP)",
+            description: "Solução integrada para unificar financeiro, estoque, vendas e outras áreas da empresa.",
+            icon: <TrendingUp size={32} className="text-white" />,
+            gradient: "from-accent-cyan to-accent-purple",
+            features: ["Gestão Financeira", "Relatórios Completos", "Integração Bancária"]
+        },
+        {
+            title: "E-commerce Integrado",
+            description: "Criação de lojas virtuais de alta performance, integradas com sistemas de estoque e PDV.",
+            icon: <Globe size={32} className="text-white" />,
+            gradient: "from-accent-blue to-accent-purple",
+            features: ["Catálogo Online", "Meios de Pagamento", "Sincronização de Pedidos"]
+        }
+    ];
+
     // Diferenciais
     const differentials = [
         {
@@ -146,7 +177,7 @@ const HomePage = () => {
                         className="hidden md:flex items-center gap-8"
                     >
                         <a href="#servicos" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Serviços</a>
-                        <Link to="/nossos-sistemas" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Nossos Sistemas</Link>
+                        <a href="#sistemas" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Nossos Sistemas</a>
                         <Link to="/quem-somos" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Quem somos</Link>
                         <motion.div whileHover={{ y: -5, transition: { duration: 0.3 } }}>
                             <Button
