@@ -6,7 +6,7 @@ import {
     Globe, TrendingUp, Zap, ArrowRight,
     CheckCircle2, Sparkles, Rocket, Target,
     Mail, Linkedin, Instagram, Twitter,
-    Menu, X, Shield
+    Menu, X, Shield, Heart, Users
 } from "lucide-react";
 import { useEffect } from "react";
 
