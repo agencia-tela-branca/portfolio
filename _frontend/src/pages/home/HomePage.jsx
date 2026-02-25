@@ -14,6 +14,27 @@ const HomePage = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
+    const values = [
+        {
+            icon: <Target className="text-white" size={32} />,
+            title: "Nossa Missão",
+            description: "Transformar a visão de nossos clientes em realidades digitais impactantes, removendo as barreiras técnicas e focando no que realmente importa: resultados.",
+            gradient: "from-accent-blue to-accent-cyan"
+        },
+        {
+            icon: <Sparkles className="text-white" size={32} />,
+            title: "Nossa Visão",
+            description: "Ser a referência em inovação digital, reconhecida pela excelência em design, performance e humanização tecnológica em cada projeto.",
+            gradient: "from-accent-purple to-accent-blue"
+        },
+        {
+            icon: <Heart className="text-white" size={32} />,
+            title: "Nossos Valores",
+            description: "Transparência total, compromisso com o sucesso do cliente, agilidade constante e a busca incessante pela perfeição nos detalhes.",
+            gradient: "from-accent-cyan to-accent-purple"
+        }
+    ];
+
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
@@ -178,7 +199,7 @@ const HomePage = () => {
                     >
                         <a href="#servicos" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Serviços</a>
                         <a href="#sistemas" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Nossos Sistemas</a>
-                        <Link to="/quem-somos" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Quem somos</Link>
+                        <a href="#quem-somos" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Quem somos</a>
                         <motion.div whileHover={{ y: -5, transition: { duration: 0.3 } }}>
                             <Button
                                 variant="contained"
@@ -222,13 +243,13 @@ const HomePage = () => {
                                 >
                                     Diferenciais
                                 </a>
-                                <Link
-                                    to="/quem-somos"
+                                <a
+                                    href="#quem-somos"
                                     onClick={() => setIsMenuOpen(false)}
                                     className="text-lg font-medium text-brand-charcoal hover:text-accent-blue transition-colors"
                                 >
                                     Quem somos
-                                </Link>
+                                </a>
                                 <Button
                                     variant="contained"
                                     href="#contato"
@@ -638,6 +659,105 @@ const HomePage = () => {
                                 Agendar Consultoria Tecnológica Gratuita
                             </Button>
                         </div>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Quem Somos Section - Migração do QuemSomosPage */}
+            <section id="quem-somos" className="py-20 md:py-32 px-6 bg-brand-offwhite relative overflow-hidden">
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-24">
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            <div className="inline-block mb-4 px-4 py-1 bg-accent-purple/10 rounded-full border border-accent-purple/20">
+                                <span className="text-accent-purple font-bold text-sm tracking-widest uppercase">Nossa Essência</span>
+                            </div>
+                            <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-brand-charcoal">Nossa História</h2>
+                            <p className="text-lg text-brand-darkgray mb-6 leading-relaxed">
+                                A Agência Tela Branca surgiu com o propósito de simplificar a jornada digital. Entendemos que muitas empresas se sentem perdidas diante da complexidade tecnológica.
+                            </p>
+                            <p className="text-lg text-brand-darkgray mb-6 leading-relaxed">
+                                Nosso nome reflete nossa filosofia: todo projeto começa com uma tela em branco, livre de pré-conceitos e cheia de possibilidades. Trabalhamos lado a lado com nossos clientes para pintar um futuro digital de sucesso.
+                            </p>
+                            <div className="flex flex-wrap gap-4 mt-8">
+                                <div className="flex items-center gap-2 px-4 py-2 bg-emerald-50 text-emerald-700 rounded-full font-medium">
+                                    <CheckCircle2 size={20} /> Experiência Comprovada
+                                </div>
+                                <div className="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-700 rounded-full font-medium">
+                                    <CheckCircle2 size={20} /> Foco Total no Cliente
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            className="relative"
+                        >
+                            <div className="aspect-square rounded-[3rem] bg-gradient-to-br from-accent-blue/10 to-accent-purple/10 flex items-center justify-center p-8 border border-white/50 backdrop-blur-sm shadow-inner">
+                                <div className="grid grid-cols-2 gap-4">
+                                    <motion.div
+                                        whileHover={{ scale: 1.1, rotate: 5 }}
+                                        className="w-24 h-24 bg-white rounded-2xl shadow-lg flex items-center justify-center text-accent-blue"
+                                    >
+                                        <Users size={40} />
+                                    </motion.div>
+                                    <motion.div
+                                        whileHover={{ scale: 1.1, rotate: -5 }}
+                                        className="w-24 h-24 bg-white rounded-2xl shadow-lg flex items-center justify-center text-accent-purple"
+                                    >
+                                        <Sparkles size={40} />
+                                    </motion.div>
+                                    <motion.div
+                                        whileHover={{ scale: 1.1, rotate: -5 }}
+                                        className="w-24 h-24 bg-white rounded-2xl shadow-lg flex items-center justify-center text-accent-cyan"
+                                    >
+                                        <Target size={40} />
+                                    </motion.div>
+                                    <motion.div
+                                        whileHover={{ scale: 1.1, rotate: 5 }}
+                                        className="w-24 h-24 bg-white rounded-2xl shadow-lg flex items-center justify-center text-brand-charcoal"
+                                    >
+                                        <Globe size={40} />
+                                    </motion.div>
+                                </div>
+                            </div>
+                            <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-2xl border border-brand-gray">
+                                <p className="text-4xl font-bold text-accent-blue mb-1">+100%</p>
+                                <p className="text-sm text-brand-darkgray font-medium">Comprometimento com<br />seu resultado</p>
+                            </div>
+                        </motion.div>
+                    </div>
+
+                    <motion.div
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                    >
+                        {values.map((item, index) => (
+                            <motion.div
+                                key={index}
+                                variants={itemVariants}
+                                whileHover={{ y: -10 }}
+                                className="group relative bg-white rounded-3xl p-8 shadow-sm border border-brand-gray hover:border-transparent hover:shadow-2xl transition-all duration-300"
+                            >
+                                <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-5 transition-opacity -z-10`} />
+
+                                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg`}>
+                                    {item.icon}
+                                </div>
+                                <h3 className="text-2xl font-bold mb-4 text-brand-charcoal">{item.title}</h3>
+                                <p className="text-brand-darkgray leading-relaxed">{item.description}</p>
+                            </motion.div>
+                        ))}
                     </motion.div>
                 </div>
             </section>
