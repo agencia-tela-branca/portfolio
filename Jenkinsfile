@@ -42,6 +42,9 @@ pipeline {
                     // Copiamos o .env se necessário (ajuste conforme o host)
                     sh 'cp /home/user/portfolio/.env .env || true'
                     
+                    // Limpeza de containers legados para evitar conflito de rede/alias
+                    sh "docker rm -f atb-frontend-site || true"
+                    
                     // Deploy via Docker Compose
                     sh "docker compose -p portfolio pull"
                     sh "docker compose -p portfolio up -d"
