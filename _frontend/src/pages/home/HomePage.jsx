@@ -209,6 +209,13 @@ const HomePage = () => {
                                     Serviços
                                 </a>
                                 <a
+                                    href="#sistemas"
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className="text-lg font-medium text-brand-charcoal hover:text-accent-blue transition-colors"
+                                >
+                                    Nossos Sistemas
+                                </a>
+                                <a
                                     href="#diferenciais"
                                     onClick={() => setIsMenuOpen(false)}
                                     className="text-lg font-medium text-brand-charcoal hover:text-accent-blue transition-colors"
