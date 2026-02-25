@@ -197,13 +197,13 @@ const HomePage = () => {
                         animate={{ opacity: 1, x: 0 }}
                         className="hidden md:flex items-center gap-8"
                     >
-                        <a href="#servicos" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Serviços</a>
-                        <a href="#sistemas" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Nossos Sistemas</a>
-                        <a href="#quem-somos" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Quem somos</a>
+                        <button onClick={() => scrollToSection('servicos')} className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium bg-transparent border-none cursor-pointer">Serviços</button>
+                        <button onClick={() => scrollToSection('sistemas')} className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium bg-transparent border-none cursor-pointer">Nossos Sistemas</button>
+                        <button onClick={() => scrollToSection('quem-somos')} className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium bg-transparent border-none cursor-pointer">Quem somos</button>
                         <motion.div whileHover={{ y: -5, transition: { duration: 0.3 } }}>
                             <Button
                                 variant="contained"
-                                href="#contato"
+                                onClick={() => scrollToSection('contato')}
                                 className="!bg-gradient-to-r !from-accent-blue !to-accent-purple hover:!from-accent-blueHover hover:!to-accent-purpleHover !text-white !font-semibold !px-6 !py-2 !rounded-full !shadow-lg !normal-case"
                             >
                                 Fale Conosco
@@ -222,38 +222,33 @@ const HomePage = () => {
                             className="md:hidden bg-white border-t border-brand-gray overflow-hidden"
                         >
                             <div className="flex flex-col p-6 gap-6 items-center text-center">
-                                <a
-                                    href="#servicos"
-                                    onClick={() => setIsMenuOpen(false)}
-                                    className="text-lg font-medium text-brand-charcoal hover:text-accent-blue transition-colors"
+                                <button
+                                    onClick={() => { scrollToSection('servicos'); setIsMenuOpen(false); }}
+                                    className="text-lg font-medium text-brand-charcoal hover:text-accent-blue transition-colors bg-transparent border-none cursor-pointer"
                                 >
                                     Serviços
-                                </a>
-                                <a
-                                    href="#sistemas"
-                                    onClick={() => setIsMenuOpen(false)}
-                                    className="text-lg font-medium text-brand-charcoal hover:text-accent-blue transition-colors"
+                                </button>
+                                <button
+                                    onClick={() => { scrollToSection('sistemas'); setIsMenuOpen(false); }}
+                                    className="text-lg font-medium text-brand-charcoal hover:text-accent-blue transition-colors bg-transparent border-none cursor-pointer"
                                 >
                                     Nossos Sistemas
-                                </a>
-                                <a
-                                    href="#diferenciais"
-                                    onClick={() => setIsMenuOpen(false)}
-                                    className="text-lg font-medium text-brand-charcoal hover:text-accent-blue transition-colors"
+                                </button>
+                                <button
+                                    onClick={() => { scrollToSection('diferenciais'); setIsMenuOpen(false); }}
+                                    className="text-lg font-medium text-brand-charcoal hover:text-accent-blue transition-colors bg-transparent border-none cursor-pointer"
                                 >
                                     Diferenciais
-                                </a>
-                                <a
-                                    href="#quem-somos"
-                                    onClick={() => setIsMenuOpen(false)}
-                                    className="text-lg font-medium text-brand-charcoal hover:text-accent-blue transition-colors"
+                                </button>
+                                <button
+                                    onClick={() => { scrollToSection('quem-somos'); setIsMenuOpen(false); }}
+                                    className="text-lg font-medium text-brand-charcoal hover:text-accent-blue transition-colors bg-transparent border-none cursor-pointer"
                                 >
                                     Quem somos
-                                </a>
+                                </button>
                                 <Button
                                     variant="contained"
-                                    href="#contato"
-                                    onClick={() => setIsMenuOpen(false)}
+                                    onClick={() => { scrollToSection('contato'); setIsMenuOpen(false); }}
                                     className="!bg-gradient-to-r !from-accent-blue !to-accent-purple !text-white !font-bold !py-3 !rounded-xl !normal-case !shadow-lg"
                                 >
                                     Fale Conosco
@@ -334,7 +329,7 @@ const HomePage = () => {
                             <Button
                                 variant="contained"
                                 size="large"
-                                href="#servicos"
+                                onClick={() => scrollToSection('servicos')}
                                 endIcon={<ArrowRight />}
                                 className="!bg-gradient-to-r !from-accent-blue !to-accent-purple hover:!from-accent-blueHover hover:!to-accent-purpleHover !text-white !font-bold !text-lg !px-10 !py-4 !rounded-full !shadow-2xl hover:!shadow-accent-blue/50 !transition-all !normal-case w-full sm:w-auto"
                             >
