@@ -7,17 +7,17 @@ services:
     ports:
       - "3001:80"
     networks:
-      - default
+      infra_network:
+        aliases:
+          - frontend
     restart: always
 
   portfolio-tunnel:
     image: cloudflare/cloudflared:latest
     container_name: portfolio-tunnel
-    command: tunnel --no-autoupdate run
-    environment:
-      - TUNNEL_TOKEN=${CLOUDFLARE_PORTFOLIO_TOKEN}
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_PORTFOLIO_TOKEN}
     networks:
-      - default
+      - infra_network
     restart: always
 
 networks:
