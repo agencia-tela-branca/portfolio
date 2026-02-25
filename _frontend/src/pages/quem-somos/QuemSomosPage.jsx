@@ -96,10 +96,10 @@ const QuemSomosPage = () => {
                     </div>
 
                     <div className="hidden md:flex items-center gap-8">
-                        <Link to="/" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Início</Link>
+                        <Link to="/" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Home</Link>
                         <a href="/#servicos" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Serviços</a>
-                        <Link to="/nossos-sistemas" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Nossos Sistemas</Link>
-                        <Link to="/quem-somos" className="text-accent-blue hover:text-accent-blueHover transition-colors font-medium">Quem somos</Link>
+                        <a href="/#sistemas" className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium">Nossos Sistemas</a>
+                        <Link to="/quem-somos" className="text-accent-blue font-bold transition-colors">Quem somos</Link>
                         <motion.div whileHover={{ y: -5, transition: { duration: 0.3 } }}>
                             <Button
                                 variant="contained"
