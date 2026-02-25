@@ -18,8 +18,21 @@ import QuemSomosPage from "./pages/quem-somos/QuemSomosPage";
 import NossosSistemasPage from "./pages/nossos-sistemas/NossosSistemasPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { initGA, trackPageView } from "./utils/analytics";
 
 function App() {
+    const location = useLocation();
+
+    useEffect(() => {
+        initGA();
+    }, []);
+
+    useEffect(() => {
+        trackPageView(location.pathname + location.search);
+    }, [location]);
+
     return (
         <Routes>
             <Route path="/" element={<HomePage />} />
