@@ -42,10 +42,10 @@ const NossosSistemasPage = () => {
     const systems = [
         {
             title: "Sistema PDV (Ponto de Venda)",
-            description: "Solução para varejo físico, unificando vendas, estoque e emissão de notas.",
+            description: "Solução robusta para gestão de lojas e prestadores de serviços, unificando vendas, estoque e agenda.",
             icon: <Target size={32} className="text-white" />,
             gradient: "from-accent-blue to-accent-cyan",
-            features: ["Vendas Ágeis", "Controle de Estoque", "Emissão Fiscal NFC-e/NF-e"]
+            features: ["Vendas Ultra Ágeis", "Gestão de Comandas", "Controle de Estoque Real"]
         },
         {
             title: "Plataformas SaaS",
@@ -210,6 +210,91 @@ const NossosSistemasPage = () => {
                             </motion.div>
                         ))}
                     </motion.div>
+                </div>
+            </section>
+
+            {/* PDV Showcase - Destaque Premium */}
+            <section className="py-20 px-6 bg-gradient-to-br from-brand-offwhite to-white border-y border-brand-gray">
+                <div className="max-w-7xl mx-auto">
+                    <div className="flex flex-col lg:flex-row items-center gap-16">
+                        <motion.div
+                            initial={{ opacity: 0, x: -40 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            className="lg:w-1/2"
+                        >
+                            <div className="inline-block mb-4 px-4 py-1 bg-accent-blue/10 rounded-full border border-accent-blue/20">
+                                <span className="text-accent-blue font-bold text-sm tracking-widest uppercase">Destaque Tech</span>
+                            </div>
+                            <h2 className="text-4xl md:text-5xl font-extrabold text-brand-charcoal mb-6 leading-tight">
+                                PDV Tela Branca <span className="text-accent-blue">v1.0</span>
+                            </h2>
+                            <p className="text-xl text-brand-darkgray mb-8 leading-relaxed">
+                                Muito mais que um simples caixa. Uma ferramenta de gestão completa desenhada para
+                                <strong className="text-brand-charcoal"> lojas e prestadores de serviços </strong>
+                                que buscam velocidade e controle absoluto.
+                            </p>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                {[
+                                    { title: "Gestão de Comandas", desc: "Controle por mesa ou cliente." },
+                                    { title: "Agenda Inteligente", desc: "Horários e serviços em tempo real." },
+                                    { title: "Vendas Ágeis", desc: "Frente de caixa intuitiva." },
+                                    { title: "Estoque Blindado", desc: "Controle rigoroso de entradas e saídas." }
+                                ].map((item, id) => (
+                                    <div key={id} className="flex gap-3">
+                                        <CheckCircle2 className="text-accent-blue flex-shrink-0" size={20} />
+                                        <div>
+                                            <h4 className="font-bold text-brand-charcoal">{item.title}</h4>
+                                            <p className="text-sm text-brand-darkgray">{item.desc}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            className="lg:w-1/2 relative"
+                        >
+                            <div className="relative z-10 bg-white p-2 rounded-[2.5rem] shadow-2xl border border-brand-gray">
+                                <div className="bg-brand-charcoal rounded-[2rem] p-6 text-white min-h-[350px] flex flex-col justify-between overflow-hidden relative">
+                                    <div className="flex justify-between items-start relative z-10">
+                                        <div>
+                                            <p className="text-accent-cyan text-xs font-bold uppercase tracking-widest mb-1">Status do Sistema</p>
+                                            <h4 className="text-2xl font-bold">Online & Operacional</h4>
+                                        </div>
+                                        <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md">
+                                            <Zap size={20} className="text-accent-cyan" />
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-4 relative z-10">
+                                        <div className="h-2 w-3/4 bg-white/10 rounded-full overflow-hidden">
+                                            <motion.div
+                                                initial={{ width: 0 }}
+                                                whileInView={{ width: "95%" }}
+                                                transition={{ duration: 1.5, delay: 0.5 }}
+                                                className="h-full bg-gradient-to-r from-accent-blue to-accent-cyan"
+                                            />
+                                        </div>
+                                        <p className="text-sm text-gray-400">Desempenho da API: <span className="text-white font-mono">240ms</span></p>
+                                    </div>
+
+                                    {/* Decorative circles in card */}
+                                    <div className="absolute -bottom-20 -right-20 w-60 h-60 bg-accent-blue/20 rounded-full blur-3xl" />
+                                    <div className="absolute -top-20 -left-20 w-40 h-40 bg-accent-purple/20 rounded-full blur-3xl" />
+                                </div>
+                            </div>
+
+                            {/* External decorative blur */}
+                            <div className="absolute -top-10 -right-10 w-72 h-72 bg-accent-blue/10 rounded-full blur-3xl -z-10" />
+                        </motion.div>
+                    </div>
                 </div>
             </section>
 
