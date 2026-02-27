@@ -49,8 +49,11 @@ pipeline {
                     sh "docker compose -p portfolio pull"
                     sh "docker compose -p portfolio up -d"
                     
+                    // Limpa imagens antigas (dangling) para manter o servidor saudável
+                    sh "docker image prune -af || true"
+                    
                     echo 'Aguardando serviços ficarem saudáveis...'
-                    sh 'sleep 10'
+                    sh 'sleep 15'
                 }
             }
         }
