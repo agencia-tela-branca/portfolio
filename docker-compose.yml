@@ -11,6 +11,11 @@ services:
         aliases:
           - frontend
     restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   portfolio-tunnel:
     image: cloudflare/cloudflared:latest
@@ -19,6 +24,11 @@ services:
     networks:
       - infra_network
     restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
 networks:
   infra_network:
