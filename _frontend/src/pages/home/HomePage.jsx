@@ -497,9 +497,9 @@ const HomePage = () => {
                                     <Button
                                         variant="outlined"
                                         onClick={() => scrollToSection('contato')}
-                                        className="!border-brand-gray !text-brand-charcoal hover:!border-accent-blue hover:!text-accent-blue !rounded-full !px-6 !py-2 !normal-case !font-semibold !transition-all w-full"
+                                        className="!border-brand-gray !text-brand-charcoal hover:!border-accent-blue hover:!text-accent-blue !rounded-full !px-4 !py-2 !normal-case !font-semibold !transition-all w-full !whitespace-nowrap !text-sm"
                                     >
-                                        [ {system.buttonText} ]
+                                        {system.buttonText}
                                     </Button>
                                 </div>
                             </motion.div>
