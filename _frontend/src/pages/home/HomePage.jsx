@@ -9,6 +9,10 @@ import {
     Menu, X, Shield, Heart, Users
 } from "lucide-react";
 import { useEffect } from "react";
+import pdvIcon from "../../assets/icons/pdv_icon.png";
+import saasIcon from "../../assets/icons/saas_icon.png";
+import erpIcon from "../../assets/icons/erp_icon.png";
+import ecommerceIcon from "../../assets/icons/ecommerce_icon.png";
 
 const HomePage = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -102,28 +106,28 @@ const HomePage = () => {
         {
             title: "Sistema PDV (Ponto de Venda)",
             description: "Solução robusta para gestão de lojas e prestadores de serviços, unificando vendas, estoque e agenda.",
-            icon: <Target size={32} className="text-white" />,
+            icon: <img src={pdvIcon} alt="PDV Icon" className="w-12 h-12 object-contain" />,
             gradient: "from-accent-blue to-accent-cyan",
             features: ["Vendas Ultra Ágeis", "Gestão de Comandas", "Controle de Estoque Real"]
         },
         {
             title: "Plataformas SaaS",
             description: "Desenvolvimento de plataformas completas para ideias de negócio baseadas em assinatura.",
-            icon: <Rocket size={32} className="text-white" />,
+            icon: <img src={saasIcon} alt="SaaS Icon" className="w-12 h-12 object-contain" />,
             gradient: "from-accent-purple to-accent-blue",
             features: ["Pagamentos Recorrentes", "Painel Administrativo", "Escalabilidade na Nuvem"]
         },
         {
             title: "Sistema de Gestão (ERP)",
             description: "Solução integrada para unificar financeiro, estoque, vendas e outras áreas da empresa.",
-            icon: <TrendingUp size={32} className="text-white" />,
+            icon: <img src={erpIcon} alt="ERP Icon" className="w-12 h-12 object-contain" />,
             gradient: "from-accent-cyan to-accent-purple",
             features: ["Gestão Financeira", "Relatórios Completos", "Integração Bancária"]
         },
         {
             title: "E-commerce Integrado",
             description: "Criação de lojas virtuais de alta performance, integradas com sistemas de estoque e PDV.",
-            icon: <Globe size={32} className="text-white" />,
+            icon: <img src={ecommerceIcon} alt="E-commerce Icon" className="w-12 h-12 object-contain" />,
             gradient: "from-accent-blue to-accent-purple",
             features: ["Catálogo Online", "Meios de Pagamento", "Sincronização de Pedidos"]
         }
