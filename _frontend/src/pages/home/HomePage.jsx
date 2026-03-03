@@ -104,32 +104,28 @@ const HomePage = () => {
 
     const systems = [
         {
-            title: "Sistema PDV (Ponto de Venda)",
-            description: "Solução robusta para gestão de lojas e prestadores de serviços, unificando vendas, estoque e agenda.",
-            icon: <img src={pdvIcon} alt="PDV Icon" className="w-12 h-12 object-contain" />,
-            gradient: "from-accent-blue to-accent-cyan",
-            features: ["Vendas Ultra Ágeis", "Gestão de Comandas", "Controle de Estoque Real"]
-        },
-        {
             title: "Plataformas SaaS",
-            description: "Desenvolvimento de plataformas completas para ideias de negócio baseadas em assinatura.",
+            subtitle: "Soluções Sob Medida",
+            description: "Desenvolvemos plataformas completas para suas ideias de negócio baseadas em assinatura. Transformamos seu projeto em uma solução robusta e escalável na nuvem.",
             icon: <img src={saasIcon} alt="SaaS Icon" className="w-12 h-12 object-contain" />,
             gradient: "from-accent-purple to-accent-blue",
-            features: ["Pagamentos Recorrentes", "Painel Administrativo", "Escalabilidade na Nuvem"]
+            buttonText: "Faça um Orçamento"
         },
         {
             title: "Sistema de Gestão (ERP)",
-            description: "Solução integrada para unificar financeiro, estoque, vendas e outras áreas da empresa.",
+            subtitle: "Desenvolvimento Personalizado",
+            description: "Criamos a solução integrada para unificar as áreas da sua empresa. Desenvolvemos módulos de financeiro, estoque, vendas e o que mais seu negócio precisar.",
             icon: <img src={erpIcon} alt="ERP Icon" className="w-12 h-12 object-contain" />,
             gradient: "from-accent-cyan to-accent-purple",
-            features: ["Gestão Financeira", "Relatórios Completos", "Integração Bancária"]
+            buttonText: "Converse com um Especialista"
         },
         {
             title: "E-commerce Integrado",
-            description: "Criação de lojas virtuais de alta performance, integradas com sistemas de estoque e PDV.",
+            subtitle: "Projetos Sob Encomenda",
+            description: "Criação de lojas virtuais de alta performance, 100% integradas com seus sistemas de estoque e PDV. Desenvolvemos o seu e-commerce do jeito que você imaginou.",
             icon: <img src={ecommerceIcon} alt="E-commerce Icon" className="w-12 h-12 object-contain" />,
             gradient: "from-accent-blue to-accent-purple",
-            features: ["Catálogo Online", "Meios de Pagamento", "Sincronização de Pedidos"]
+            buttonText: "Solicite uma Proposta"
         }
     ];
 
@@ -464,35 +460,40 @@ const HomePage = () => {
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.1 }}
-                        className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                        className="grid grid-cols-1 md:grid-cols-3 gap-8"
                     >
                         {systems.map((system, index) => (
                             <motion.div
                                 key={index}
                                 variants={itemVariants}
                                 whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                                className="group relative bg-white rounded-3xl p-8 border border-brand-gray transition-all duration-300"
+                                className="group relative bg-white rounded-3xl p-8 border border-brand-gray transition-all duration-300 flex flex-col items-center"
                             >
                                 <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${system.gradient} flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform`}>
                                     {system.icon}
                                 </div>
 
-                                <h3 className="text-2xl font-bold mb-4 text-brand-charcoal group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-accent-blue group-hover:to-accent-purple transition-all">
+                                <h3 className="text-xl font-bold mb-1 text-brand-charcoal group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-accent-blue group-hover:to-accent-purple transition-all">
                                     {system.title}
                                 </h3>
 
-                                <p className="text-brand-darkgray mb-6 leading-relaxed">
+                                <p className="text-lg font-semibold text-brand-darkgray mb-4">
+                                    {system.subtitle}
+                                </p>
+
+                                <p className="text-brand-darkgray mb-8 leading-relaxed text-center">
                                     {system.description}
                                 </p>
 
-                                <ul className="space-y-2">
-                                    {system.features.map((feature, idx) => (
-                                        <li key={idx} className="flex items-center gap-2 text-sm text-brand-darkgray justify-center">
-                                            <CheckCircle2 size={16} className="text-accent-blue flex-shrink-0" />
-                                            <span>{feature}</span>
-                                        </li>
-                                    ))}
-                                </ul>
+                                <div className="mt-auto w-full">
+                                    <Button
+                                        variant="outlined"
+                                        onClick={() => scrollToSection('contato')}
+                                        className="!border-brand-gray !text-brand-charcoal hover:!border-accent-blue hover:!text-accent-blue !rounded-full !px-6 !py-2 !normal-case !font-semibold !transition-all w-full"
+                                    >
+                                        [ {system.buttonText} ]
+                                    </Button>
+                                </div>
                             </motion.div>
                         ))}
                     </motion.div>
