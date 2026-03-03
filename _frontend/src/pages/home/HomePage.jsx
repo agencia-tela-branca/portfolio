@@ -104,6 +104,14 @@ const HomePage = () => {
 
     const systems = [
         {
+            title: "Sistema PDV (Ponto de Venda)",
+            subtitle: "Solução Completa de Vendas",
+            description: "Robusta solução para gestão de lojas e prestadores de serviços, unificando vendas, estoque e agenda em um único lugar.",
+            icon: <img src={pdvIcon} alt="PDV Icon" className="w-12 h-12 object-contain" />,
+            gradient: "from-accent-blue to-accent-cyan",
+            buttonText: "Conhecer PDV"
+        },
+        {
             title: "Plataformas SaaS",
             subtitle: "Soluções Sob Medida",
             description: "Desenvolvemos plataformas completas para suas ideias de negócio baseadas em assinatura. Transformamos seu projeto em uma solução robusta e escalável na nuvem.",
