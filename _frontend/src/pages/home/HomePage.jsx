@@ -295,14 +295,6 @@ const HomePage = () => {
                     transition={{ duration: 0.8 }}
                     className="relative z-10 max-w-5xl"
                 >
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.2, duration: 0.6 }}
-                        className="inline-block mb-6 px-4 py-2 bg-gradient-to-r from-accent-blue/10 to-accent-purple/10 rounded-full border border-accent-blue/20"
-                    >
-                        <span className="text-accent-blue font-semibold text-sm md:text-base">✨ Transformando ideias em realidade digital</span>
-                    </motion.div>
 
                     <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 text-brand-charcoal">
                         Do Vazio da{" "}
