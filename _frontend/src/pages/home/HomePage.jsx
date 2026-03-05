@@ -205,8 +205,8 @@ const HomePage = () => {
                         animate={{ opacity: 1, x: 0 }}
                         className="hidden md:flex items-center gap-8"
                     >
+                        <button onClick={() => scrollToSection('sistemas')} className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium bg-transparent border-none cursor-pointer">Sistemas</button>
                         <button onClick={() => scrollToSection('servicos')} className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium bg-transparent border-none cursor-pointer">Serviços</button>
-                        <button onClick={() => scrollToSection('sistemas')} className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium bg-transparent border-none cursor-pointer">Nossos Sistemas</button>
                         <button onClick={() => scrollToSection('quem-somos')} className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium bg-transparent border-none cursor-pointer">Quem somos</button>
                         <motion.div whileHover={{ y: -5, transition: { duration: 0.3 } }}>
                             <Button
@@ -230,17 +230,18 @@ const HomePage = () => {
                             className="md:hidden bg-white border-t border-brand-gray overflow-hidden"
                         >
                             <div className="flex flex-col p-6 gap-6 items-center text-center">
+
+                                <button
+                                    onClick={() => { scrollToSection('sistemas'); setIsMenuOpen(false); }}
+                                    className="text-lg font-medium text-brand-charcoal hover:text-accent-blue transition-colors bg-transparent border-none cursor-pointer"
+                                >
+                                    Sistemas
+                                </button>
                                 <button
                                     onClick={() => { scrollToSection('servicos'); setIsMenuOpen(false); }}
                                     className="text-lg font-medium text-brand-charcoal hover:text-accent-blue transition-colors bg-transparent border-none cursor-pointer"
                                 >
                                     Serviços
-                                </button>
-                                <button
-                                    onClick={() => { scrollToSection('sistemas'); setIsMenuOpen(false); }}
-                                    className="text-lg font-medium text-brand-charcoal hover:text-accent-blue transition-colors bg-transparent border-none cursor-pointer"
-                                >
-                                    Nossos Sistemas
                                 </button>
                                 <button
                                     onClick={() => { scrollToSection('diferenciais'); setIsMenuOpen(false); }}
@@ -364,6 +365,181 @@ const HomePage = () => {
                 </motion.div>
             </section>
 
+            {/* Nossos Sistemas Section */}
+            <section id="sistemas" className="py-20 md:py-32 px-6 bg-brand-lightgray/30 relative overflow-hidden text-center">
+                <div className="max-w-7xl mx-auto">
+                    <motion.div
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.2 }}
+                        className="text-center mb-16"
+                    >
+                        <motion.h2
+                            variants={itemVariants}
+                            className="text-4xl md:text-5xl font-extrabold mb-4 text-brand-charcoal"
+                        >
+                            Nossos <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple">Sistemas</span>
+                        </motion.h2>
+                        <motion.p
+                            variants={itemVariants}
+                            className="text-xl text-brand-darkgray max-w-2xl mx-auto"
+                        >
+                            Tecnologia de ponta para otimizar processos e gerar resultados reais para o seu negócio.
+                        </motion.p>
+                    </motion.div>
+
+                    <section id="pdv-showcase" className="py-20 md:py-32 px-6 bg-white border-y border-brand-gray relative overflow-hidden">
+                        <div className="max-w-7xl mx-auto">
+                            <div className="flex flex-col lg:flex-row items-center gap-16">
+                                <motion.div
+                                    initial={{ opacity: 0, x: -40 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.8 }}
+                                    className="lg:w-1/2 text-left"
+                                >
+                                    <div className="inline-block mb-4 px-4 py-1 bg-accent-blue/10 rounded-full border border-accent-blue/20">
+                                        <span className="text-accent-blue font-bold text-sm tracking-widest uppercase">Destaque Tech</span>
+                                    </div>
+                                    <h2 className="text-4xl md:text-5xl font-extrabold text-brand-charcoal mb-6 leading-tight">
+                                        PDV Tela Branca <span className="text-accent-blue">v1.0</span>
+                                    </h2>
+                                    <p className="text-xl text-brand-darkgray mb-8 leading-relaxed">
+                                        Muito mais que um simples caixa. Uma ferramenta de gestão completa desenhada para
+                                        <strong className="text-brand-charcoal"> lojas e prestadores de serviços </strong>
+                                        que buscam velocidade e controle absoluto.
+                                    </p>
+
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                                        {[
+                                            { title: "Gestão de Comandas", desc: "Controle por mesa ou cliente." },
+                                            { title: "Agenda Inteligente", desc: "Horários e serviços em tempo real." },
+                                            { title: "Vendas Ágeis", desc: "Frente de caixa intuitiva." },
+                                            { title: "Estoque Blindado", desc: "Controle rigoroso de entradas e saídas." }
+                                        ].map((item, id) => (
+                                            <div key={id} className="flex gap-3">
+                                                <CheckCircle2 className="text-accent-blue flex-shrink-0" size={20} />
+                                                <div>
+                                                    <h4 className="font-bold text-brand-charcoal">{item.title}</h4>
+                                                    <p className="text-sm text-brand-darkgray">{item.desc}</p>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                        <Button
+                                            variant="contained"
+                                            href="https://pdv.agenciatelabranca.com.br"
+                                            target="_blank"
+                                            endIcon={<ArrowRight />}
+                                            className="!bg-brand-charcoal hover:!bg-black !text-white !font-bold !px-8 !py-4 !rounded-2xl !shadow-xl !normal-case !transition-all"
+                                        >
+                                            Acessar Sistema PDV
+                                        </Button>
+                                    </motion.div>
+                                </motion.div>
+
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.8 }}
+                                    className="lg:w-1/2 relative"
+                                >
+                                    <div className="relative z-10 bg-white p-2 rounded-[2.5rem] shadow-2xl border border-brand-gray">
+                                        <div className="bg-brand-charcoal rounded-[2rem] p-6 text-white min-h-[350px] flex flex-col justify-between overflow-hidden relative">
+                                            <div className="flex justify-between items-start relative z-10">
+                                                <div>
+                                                    <p className="text-accent-cyan text-xs font-bold uppercase tracking-widest mb-1">Status do Sistema</p>
+                                                    <h4 className="text-2xl font-bold">Online & Operacional</h4>
+                                                </div>
+                                                <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md">
+                                                    <Zap size={20} className="text-accent-cyan" />
+                                                </div>
+                                            </div>
+
+                                            <div className="space-y-4 relative z-10">
+                                                <div className="h-2 w-3/4 bg-white/10 rounded-full overflow-hidden">
+                                                    <motion.div
+                                                        initial={{ width: 0 }}
+                                                        whileInView={{ width: "95%" }}
+                                                        transition={{ duration: 1.5, delay: 0.5 }}
+                                                        className="h-full bg-gradient-to-r from-accent-blue to-accent-cyan"
+                                                    />
+                                                </div>
+                                                <p className="text-sm text-gray-400">Desempenho da API: <span className="text-white font-mono">240ms</span></p>
+                                            </div>
+
+                                            {/* Decorative circles in card */}
+                                            <div className="absolute -bottom-20 -right-20 w-60 h-60 bg-accent-blue/20 rounded-full blur-3xl" />
+                                            <div className="absolute -top-20 -left-20 w-40 h-40 bg-accent-purple/20 rounded-full blur-3xl" />
+                                        </div>
+                                    </div>
+
+                                    {/* External decorative blur */}
+                                    <div className="absolute -top-10 -right-10 w-72 h-72 bg-accent-blue/10 rounded-full blur-3xl -z-10" />
+                                </motion.div>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    {/*
+
+                    <motion.div
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.1 }}
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+                    >
+                        {systems.map((system, index) => (
+                            <motion.div
+                                key={index}
+                                variants={itemVariants}
+                                whileHover={{ y: -10, transition: { duration: 0.3 } }}
+                                className="group relative bg-white rounded-3xl p-8 border border-brand-gray transition-all duration-300 flex flex-col items-center"
+                            >
+                                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${system.gradient} flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform`}>
+                                    {system.icon}
+                                </div>
+
+                                <h3 className="text-xl font-bold mb-1 text-brand-charcoal group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-accent-blue group-hover:to-accent-purple transition-all">
+                                    {system.title}
+                                </h3>
+
+                                <p className="text-lg font-semibold text-brand-darkgray mb-4">
+                                    {system.subtitle}
+                                </p>
+
+                                <p className="text-brand-darkgray mb-8 leading-relaxed text-center">
+                                    {system.description}
+                                </p>
+
+                                <div className="mt-auto w-full">
+                                    <Button
+                                        variant="outlined"
+                                        onClick={() => scrollToSection('contato')}
+                                        className="!border-brand-gray !text-brand-charcoal hover:!border-accent-blue hover:!text-accent-blue !rounded-full !px-4 !py-2 !normal-case !font-semibold !transition-all w-full !whitespace-nowrap !text-sm"
+                                    >
+                                        {system.buttonText}
+                                    </Button>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                    
+            {/* PDV Showcase - Destaque Premium */}
+
+
+
+
+                </div>
+            </section>
+
+
             {/* Serviços Section */}
             <section id="servicos" className="py-20 md:py-32 px-6 bg-white">
                 <div className="max-w-7xl mx-auto">
@@ -431,171 +607,6 @@ const HomePage = () => {
                 </div>
             </section>
 
-            {/* Nossos Sistemas Section */}
-            <section id="sistemas" className="py-20 md:py-32 px-6 bg-brand-lightgray/30 relative overflow-hidden text-center">
-                <div className="max-w-7xl mx-auto">
-                    <motion.div
-                        variants={containerVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.2 }}
-                        className="text-center mb-16"
-                    >
-                        <motion.h2
-                            variants={itemVariants}
-                            className="text-4xl md:text-5xl font-extrabold mb-4 text-brand-charcoal"
-                        >
-                            Nossos <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple">Sistemas</span>
-                        </motion.h2>
-                        <motion.p
-                            variants={itemVariants}
-                            className="text-xl text-brand-darkgray max-w-2xl mx-auto"
-                        >
-                            Tecnologia de ponta para otimizar processos e gerar resultados reais para o seu negócio.
-                        </motion.p>
-                    </motion.div>
-
-                    <motion.div
-                        variants={containerVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.1 }}
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-                    >
-                        {systems.map((system, index) => (
-                            <motion.div
-                                key={index}
-                                variants={itemVariants}
-                                whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                                className="group relative bg-white rounded-3xl p-8 border border-brand-gray transition-all duration-300 flex flex-col items-center"
-                            >
-                                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${system.gradient} flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform`}>
-                                    {system.icon}
-                                </div>
-
-                                <h3 className="text-xl font-bold mb-1 text-brand-charcoal group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-accent-blue group-hover:to-accent-purple transition-all">
-                                    {system.title}
-                                </h3>
-
-                                <p className="text-lg font-semibold text-brand-darkgray mb-4">
-                                    {system.subtitle}
-                                </p>
-
-                                <p className="text-brand-darkgray mb-8 leading-relaxed text-center">
-                                    {system.description}
-                                </p>
-
-                                <div className="mt-auto w-full">
-                                    <Button
-                                        variant="outlined"
-                                        onClick={() => scrollToSection('contato')}
-                                        className="!border-brand-gray !text-brand-charcoal hover:!border-accent-blue hover:!text-accent-blue !rounded-full !px-4 !py-2 !normal-case !font-semibold !transition-all w-full !whitespace-nowrap !text-sm"
-                                    >
-                                        {system.buttonText}
-                                    </Button>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* PDV Showcase - Destaque Premium */}
-            <section id="pdv-showcase" className="py-20 md:py-32 px-6 bg-white border-y border-brand-gray relative overflow-hidden">
-                <div className="max-w-7xl mx-auto">
-                    <div className="flex flex-col lg:flex-row items-center gap-16">
-                        <motion.div
-                            initial={{ opacity: 0, x: -40 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                            className="lg:w-1/2 text-left"
-                        >
-                            <div className="inline-block mb-4 px-4 py-1 bg-accent-blue/10 rounded-full border border-accent-blue/20">
-                                <span className="text-accent-blue font-bold text-sm tracking-widest uppercase">Destaque Tech</span>
-                            </div>
-                            <h2 className="text-4xl md:text-5xl font-extrabold text-brand-charcoal mb-6 leading-tight">
-                                PDV Tela Branca <span className="text-accent-blue">v1.0</span>
-                            </h2>
-                            <p className="text-xl text-brand-darkgray mb-8 leading-relaxed">
-                                Muito mais que um simples caixa. Uma ferramenta de gestão completa desenhada para
-                                <strong className="text-brand-charcoal"> lojas e prestadores de serviços </strong>
-                                que buscam velocidade e controle absoluto.
-                            </p>
-
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-                                {[
-                                    { title: "Gestão de Comandas", desc: "Controle por mesa ou cliente." },
-                                    { title: "Agenda Inteligente", desc: "Horários e serviços em tempo real." },
-                                    { title: "Vendas Ágeis", desc: "Frente de caixa intuitiva." },
-                                    { title: "Estoque Blindado", desc: "Controle rigoroso de entradas e saídas." }
-                                ].map((item, id) => (
-                                    <div key={id} className="flex gap-3">
-                                        <CheckCircle2 className="text-accent-blue flex-shrink-0" size={20} />
-                                        <div>
-                                            <h4 className="font-bold text-brand-charcoal">{item.title}</h4>
-                                            <p className="text-sm text-brand-darkgray">{item.desc}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-
-                            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                <Button
-                                    variant="contained"
-                                    href="https://pdv.agenciatelabranca.com.br"
-                                    target="_blank"
-                                    endIcon={<ArrowRight />}
-                                    className="!bg-brand-charcoal hover:!bg-black !text-white !font-bold !px-8 !py-4 !rounded-2xl !shadow-xl !normal-case !transition-all"
-                                >
-                                    Acessar Sistema PDV
-                                </Button>
-                            </motion.div>
-                        </motion.div>
-
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                            className="lg:w-1/2 relative"
-                        >
-                            <div className="relative z-10 bg-white p-2 rounded-[2.5rem] shadow-2xl border border-brand-gray">
-                                <div className="bg-brand-charcoal rounded-[2rem] p-6 text-white min-h-[350px] flex flex-col justify-between overflow-hidden relative">
-                                    <div className="flex justify-between items-start relative z-10">
-                                        <div>
-                                            <p className="text-accent-cyan text-xs font-bold uppercase tracking-widest mb-1">Status do Sistema</p>
-                                            <h4 className="text-2xl font-bold">Online & Operacional</h4>
-                                        </div>
-                                        <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md">
-                                            <Zap size={20} className="text-accent-cyan" />
-                                        </div>
-                                    </div>
-
-                                    <div className="space-y-4 relative z-10">
-                                        <div className="h-2 w-3/4 bg-white/10 rounded-full overflow-hidden">
-                                            <motion.div
-                                                initial={{ width: 0 }}
-                                                whileInView={{ width: "95%" }}
-                                                transition={{ duration: 1.5, delay: 0.5 }}
-                                                className="h-full bg-gradient-to-r from-accent-blue to-accent-cyan"
-                                            />
-                                        </div>
-                                        <p className="text-sm text-gray-400">Desempenho da API: <span className="text-white font-mono">240ms</span></p>
-                                    </div>
-
-                                    {/* Decorative circles in card */}
-                                    <div className="absolute -bottom-20 -right-20 w-60 h-60 bg-accent-blue/20 rounded-full blur-3xl" />
-                                    <div className="absolute -top-20 -left-20 w-40 h-40 bg-accent-purple/20 rounded-full blur-3xl" />
-                                </div>
-                            </div>
-
-                            {/* External decorative blur */}
-                            <div className="absolute -top-10 -right-10 w-72 h-72 bg-accent-blue/10 rounded-full blur-3xl -z-10" />
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
 
             {/* Diferenciais Section */}
             <section className="py-20 px-6 bg-white">
