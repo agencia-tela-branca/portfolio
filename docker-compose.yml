@@ -3,7 +3,7 @@ version: '3.8'
 services:
   portfolio-frontend:
     image: agenciatelabranca/portfolio-frontend:latest
-    container_name: portfolio-frontend
+    container_name: portfolio-frontend-v2
     ports:
       - "3001:80"
     networks:
@@ -19,7 +19,7 @@ services:
 
   portfolio-tunnel:
     image: cloudflare/cloudflared:latest
-    container_name: portfolio-tunnel
+    container_name: portfolio-tunnel-v2
     command: tunnel --no-autoupdate run --token ${CLOUDFLARE_PORTFOLIO_TOKEN}
     networks:
       - infra_network
