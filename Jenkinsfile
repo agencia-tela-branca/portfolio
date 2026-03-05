@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_REGISTRY = "agenciatelabranca"
-        APP_NAME = "portfolio"
+        APP_NAME = "site-principal-atb"
         BACKEND_IMAGE = "${DOCKER_REGISTRY}/${APP_NAME}-backend"
         FRONTEND_IMAGE = "${DOCKER_REGISTRY}/${APP_NAME}-frontend"
     }
@@ -40,14 +40,15 @@ pipeline {
                 echo 'Realizando deploy no ambiente de Produção...'
                 script {
                     // Copiamos o .env se necessário (ajuste conforme o host)
-                    sh 'cp /home/user/portfolio/.env .env || true'
+                    sh 'cp /home/user/site-principal-atb/.env .env || true'
                     
                     // Limpeza de containers legados para evitar conflito de rede/alias
-                    sh "docker rm -f atb-frontend-site || true"
+                    sh "docker rm -f site-principal-atb-frontend || true"
+                    sh "docker rm -f portfolio-frontend-v2 || true"
                     
                     // Deploy via Docker Compose
-                    sh "docker compose -p portfolio pull"
-                    sh "docker compose -p portfolio up -d"
+                    sh "docker compose -p site-principal-atb pull"
+                    sh "docker compose -p site-principal-atb up -d"
                     
                     // Limpa imagens antigas (dangling) para manter o servidor saudável
                     sh "docker image prune -af || true"
@@ -64,10 +65,10 @@ pipeline {
             cleanWs()
         }
         success {
-            echo 'Pipeline Portfolio finalizado com sucesso!'
+            echo 'Pipeline Site Principal ATB finalizado com sucesso!'
         }
         failure {
-            echo 'Ocorreu um erro no pipeline do Portfolio. Verifique os logs.'
+            echo 'Ocorreu um erro no pipeline do Site Principal ATB. Verifique os logs.'
         }
     }
 }

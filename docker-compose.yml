@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
-  portfolio-frontend:
-    image: agenciatelabranca/portfolio-frontend:latest
-    container_name: portfolio-frontend-v2
+  site-principal-atb-frontend:
+    image: agenciatelabranca/site-principal-atb-frontend:latest
+    container_name: site-principal-atb-frontend
     ports:
       - "3001:80"
     networks:
@@ -17,10 +17,10 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  portfolio-tunnel:
+  site-principal-atb-tunnel:
     image: cloudflare/cloudflared:latest
-    container_name: portfolio-tunnel-v2
-    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_PORTFOLIO_TOKEN}
+    container_name: site-principal-atb-tunnel
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_SITE_PRINCIPAL_TOKEN}
     networks:
       - infra_network
     restart: always
