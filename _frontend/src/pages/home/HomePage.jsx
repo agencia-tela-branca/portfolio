@@ -178,8 +178,10 @@ const HomePage = () => {
                             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                             className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
                         >
-                            <div className="w-12 h-10 bg-gradient-to-br from-accent-blue to-accent-purple rounded-lg flex items-center justify-center">
-                                <span className="text-white font-bold text-lg">ATB</span>
+                            <div className="w-12 h-10 rounded-lg flex items-center justify-center">
+                                <div className="w-10 h-10 bg-brand-gradient rounded-xl flex items-center justify-center transition-transform">
+                                    <img src="/logo-tela-branca.png" alt="Logo Tela Branca" className="w-full h-full object-contain" />
+                                </div>
                             </div>
                             <span className="text-xl font-bold text-brand-charcoal">Agência Tela Branca</span>
                         </Link>
