@@ -40,7 +40,7 @@ pipeline {
                 echo 'Realizando deploy no ambiente de Produção...'
                 script {
                     // Copiamos o .env se necessário (ajuste conforme o host)
-                    sh 'cp /home/user/projects/site-principal-atb/.env .env || true'
+                    sh 'cp /home/user/projects/site-principal-atb/frontend/.env .env || true'
                     
                     // Limpeza de containers legados para evitar conflito de rede/alias
                     sh "docker rm -f site-principal-atb-frontend || true"
