@@ -9,7 +9,7 @@ services:
     networks:
       infra_network:
         aliases:
-          - frontend
+          - site-principal-frontend
     restart: always
     logging:
       driver: "json-file"
