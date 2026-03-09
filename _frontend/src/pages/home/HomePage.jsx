@@ -213,7 +213,8 @@ const HomePage = () => {
                         <motion.div whileHover={{ y: -5, transition: { duration: 0.3 } }}>
                             <Button
                                 variant="contained"
-                                onClick={() => scrollToSection('contato')}
+                                href="https://wa.me/55179883236219"
+                                target="_blank"
                                 className="!bg-gradient-to-r !from-accent-blue !to-accent-purple hover:!from-accent-blueHover hover:!to-accent-purpleHover !text-white !font-semibold !px-6 !py-2 !rounded-full !shadow-lg !normal-case"
                             >
                                 Fale Conosco
@@ -259,7 +260,9 @@ const HomePage = () => {
                                 </button>
                                 <Button
                                     variant="contained"
-                                    onClick={() => { scrollToSection('contato'); setIsMenuOpen(false); }}
+                                    href="https://wa.me/55179883236219"
+                                    target="_blank"
+                                    onClick={() => setIsMenuOpen(false)}
                                     className="!bg-gradient-to-r !from-accent-blue !to-accent-purple !text-white !font-bold !py-3 !rounded-xl !normal-case !shadow-lg"
                                 >
                                     Fale Conosco
@@ -666,7 +669,8 @@ const HomePage = () => {
                             <Button
                                 variant="contained"
                                 size="large"
-                                href="#contato"
+                                href="https://wa.me/55179883236219"
+                                target="_blank"
                                 className="!bg-white !text-accent-blue !font-bold !text-lg !px-8 !py-3 !rounded-full !shadow-lg hover:!bg-gray-100 !transform hover:!scale-105 !transition-all !normal-case"
                             >
                                 Agendar Consultoria Tecnológica Gratuita
@@ -827,8 +831,8 @@ const HomePage = () => {
                                 </li>
                                 <li className="flex items-center gap-2 justify-center">
                                     <Zap size={20} className="text-accent-blue flex-shrink-0" />
-                                    <a href="#" className="hover:text-accent-blue transition-colors">
-                                        Entre em contato com o suporte
+                                    <a href="https://wa.me/55179883236219" target="_blank" className="hover:text-accent-blue transition-colors">
+                                        Entre em contato pelo WhatsApp
                                     </a>
                                 </li>
                             </ul>

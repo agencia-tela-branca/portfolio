@@ -34,7 +34,7 @@ const Navbar = () => {
         { path: '/login', label: 'Login', icon: <LogIn size={20} /> },
         { path: '#', label: 'Sobre', icon: <Info size={20} /> },
         { path: '#', label: 'Funcionalidades', icon: <FileText size={20} /> },
-        { path: '#', label: 'Contato', icon: <Mail size={20} /> },
+        { path: 'https://wa.me/55179883236219', label: 'Contato', icon: <Mail size={20} /> },
     ];
 
     // Desktop navigation links

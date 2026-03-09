@@ -56,8 +56,8 @@ const LoginPage = () => {
 
     const itemVariants = {
         hidden: { opacity: 0, y: 20 },
-        visible: { 
-            opacity: 1, 
+        visible: {
+            opacity: 1,
             y: 0,
             transition: { duration: 0.5 }
         }
@@ -165,7 +165,7 @@ const LoginPage = () => {
                         <div className="relative group">
                             {/* Gradient border effect */}
                             <div className="absolute -inset-0.5 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl opacity-20 group-hover:opacity-40 blur transition-opacity" />
-                            
+
                             <div className="relative bg-gray-800/80 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-8 md:p-10">
                                 <motion.div
                                     initial={{ opacity: 0, y: -20 }}
@@ -306,8 +306,8 @@ const LoginPage = () => {
                                             animate={{ opacity: 1, scale: 1 }}
                                             transition={{ duration: 0.3 }}
                                         >
-                                            <Alert 
-                                                severity="error" 
+                                            <Alert
+                                                severity="error"
                                                 className="!bg-red-900/20 !border !border-red-500/50 !text-red-200"
                                             >
                                                 {error}
@@ -373,7 +373,7 @@ const LoginPage = () => {
                                         Página Inicial
                                     </a>
                                     <span>•</span>
-                                    <a href="#" className="hover:text-green-400 transition-colors">
+                                    <a href="https://wa.me/55179883236219" target="_blank" className="hover:text-green-400 transition-colors">
                                         Suporte
                                     </a>
                                     <span>•</span>
