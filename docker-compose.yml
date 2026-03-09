@@ -21,7 +21,7 @@ services:
   site-principal-atb-tunnel:
     image: cloudflare/cloudflared:latest
     container_name: site-principal-atb-tunnel
-    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_SITE_PRINCIPAL_TOKEN}
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_PORTFOLIO_TOKEN}
     networks:
       - infra_network
     restart: always
