@@ -2,10 +2,14 @@ services:
   frontend:
     build: .
     container_name: portfolio-frontend
+    environment:
+      - TZ=America/Sao_Paulo
     restart: always
 
   tunnel:
     image: cloudflare/cloudflared:latest
     container_name: cloudflare-tunnel
     restart: always
+    environment:
+      - TZ=America/Sao_Paulo
     command: tunnel run --token ${TUNNEL_TOKEN}
