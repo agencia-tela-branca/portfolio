@@ -213,7 +213,7 @@ const HomePage = () => {
                         <motion.div whileHover={{ y: -5, transition: { duration: 0.3 } }}>
                             <Button
                                 variant="contained"
-                                href="https://wa.me/55179883236219"
+                                href="https://wa.me/5517988326219"
                                 target="_blank"
                                 className="!bg-gradient-to-r !from-accent-blue !to-accent-purple hover:!from-accent-blueHover hover:!to-accent-purpleHover !text-white !font-semibold !px-6 !py-2 !rounded-full !shadow-lg !normal-case"
                             >
