@@ -41,17 +41,20 @@ pipeline {
             steps {
                 echo 'Realizando deploy no ambiente de Produção...'
                 script {
-                    // Copiamos o .env (procurando nos caminhos atb-site, site-principal-atb e host)
-                    sh 'cp /var/jenkins_home/atb-site/.env .env || cp /var/jenkins_home/site-principal-atb/.env .env || cp /home/user/projects/site-principal-atb/frontend/.env .env || cp /home/user/projects/site-principal-atb/.env .env || true'
+                    // Garante a existencia de um arquivo .env para que o docker compose nao falhe
+                    sh 'touch .env'
                     
-                    // Remoção forçada de containers legados/existentes para prevenir conflitos de nome do Docker Daemon
+                    // Copiamos o .env se presente no container do Jenkins ou no host
+                    sh 'cp /var/jenkins_home/portfolio/.env .env || cp /var/jenkins_home/atb-site/.env .env || cp /var/jenkins_home/site-principal-atb/.env .env || cp /home/user/projects/site-principal-atb/frontend/.env .env || cp /home/user/projects/site-principal-atb/.env .env || true'
+                    
+                    // Remocao forçada de containers legados para evitar conflito no Docker Daemon
                     sh "docker rm -f site-principal-atb-frontend site-principal-atb-tunnel portfolio-frontend-v2 cloudflare-tunnel || true"
                     
                     // Deploy via Docker Compose ativando o perfil de tunnel e injetando o .env
                     sh "docker compose -p site-principal-atb --env-file .env --profile tunnel pull || true"
                     sh "docker compose -p site-principal-atb --env-file .env --profile tunnel up -d --remove-orphans"
                     
-                    // Limpa imagens antigas (dangling) sem apagar o cache útil do host
+                    // Limpa imagens antigas (dangling) sem apagar o cache util do host
                     sh "docker image prune -f || true"
                     
                     echo 'Aguardando serviços ficarem saudáveis...'
