@@ -27,9 +27,11 @@ pipeline {
                         // Build da Imagem Frontend
                         sh "docker build --no-cache -t ${FRONTEND_IMAGE}:${tag} -t ${FRONTEND_IMAGE}:latest ./_frontend"
                         
-                        // Push da Imagem Frontend
-                        sh "docker push ${FRONTEND_IMAGE}:${tag}"
-                        sh "docker push ${FRONTEND_IMAGE}:latest"
+                        // Push da Imagem Frontend com retry
+                        retry(3) {
+                            sh "docker push ${FRONTEND_IMAGE}:${tag}"
+                            sh "docker push ${FRONTEND_IMAGE}:latest"
+                        }
                     }
                 }
             }
@@ -39,19 +41,18 @@ pipeline {
             steps {
                 echo 'Realizando deploy no ambiente de Produção...'
                 script {
-                    // Copiamos o .env se necessário (ajuste conforme o host)
-                    sh 'cp /home/user/projects/site-principal-atb/frontend/.env .env || true'
+                    // Copiamos o .env (verificando os caminhos padrão do servidor/jenkins)
+                    sh 'cp /var/jenkins_home/site-principal-atb/.env .env || cp /home/user/projects/site-principal-atb/frontend/.env .env || cp /home/user/projects/site-principal-atb/.env .env || true'
                     
                     // Limpeza de containers legados para evitar conflito de rede/alias
-                    sh "docker rm -f site-principal-atb-frontend || true"
-                    sh "docker rm -f portfolio-frontend-v2 || true"
+                    sh "docker rm -f site-principal-atb-frontend site-principal-atb-tunnel portfolio-frontend-v2 || true"
                     
-                    // Deploy via Docker Compose
-                    sh "docker compose -p site-principal-atb pull"
-                    sh "docker compose -p site-principal-atb up -d"
+                    // Deploy via Docker Compose ativando o perfil de tunnel e injetando o .env
+                    sh "docker compose -p site-principal-atb --env-file .env --profile tunnel pull || true"
+                    sh "docker compose -p site-principal-atb --env-file .env --profile tunnel up -d --remove-orphans"
                     
-                    // Limpa imagens antigas (dangling) para manter o servidor saudável
-                    sh "docker image prune -af || true"
+                    // Limpa imagens antigas (dangling) sem apagar o cache útil do host
+                    sh "docker image prune -f || true"
                     
                     echo 'Aguardando serviços ficarem saudáveis...'
                     sh 'sleep 15'
