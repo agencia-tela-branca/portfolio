@@ -41,11 +41,11 @@ pipeline {
             steps {
                 echo 'Realizando deploy no ambiente de Produção...'
                 script {
-                    // Copiamos o .env (verificando os caminhos padrão do servidor/jenkins)
-                    sh 'cp /var/jenkins_home/site-principal-atb/.env .env || cp /home/user/projects/site-principal-atb/frontend/.env .env || cp /home/user/projects/site-principal-atb/.env .env || true'
+                    // Copiamos o .env (procurando nos caminhos atb-site, site-principal-atb e host)
+                    sh 'cp /var/jenkins_home/atb-site/.env .env || cp /var/jenkins_home/site-principal-atb/.env .env || cp /home/user/projects/site-principal-atb/frontend/.env .env || cp /home/user/projects/site-principal-atb/.env .env || true'
                     
-                    // Limpeza de containers legados para evitar conflito de rede/alias
-                    sh "docker rm -f site-principal-atb-frontend site-principal-atb-tunnel portfolio-frontend-v2 || true"
+                    // Remoção forçada de containers legados/existentes para prevenir conflitos de nome do Docker Daemon
+                    sh "docker rm -f site-principal-atb-frontend site-principal-atb-tunnel portfolio-frontend-v2 cloudflare-tunnel || true"
                     
                     // Deploy via Docker Compose ativando o perfil de tunnel e injetando o .env
                     sh "docker compose -p site-principal-atb --env-file .env --profile tunnel pull || true"
