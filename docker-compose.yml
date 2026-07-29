@@ -30,9 +30,12 @@ services:
     environment:
       - TZ=America/Sao_Paulo
       - TUNNEL_TOKEN=${CLOUDFLARE_SITE_TOKEN:-${TUNNEL_TOKEN:-${CLOUDFLARE_PORTFOLIO_TOKEN:-}}}
-    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_SITE_TOKEN:-${TUNNEL_TOKEN:-${CLOUDFLARE_PORTFOLIO_TOKEN:-}}}
+    command: tunnel --no-autoupdate run
     networks:
-      - infra_network
+      infra_network:
+        aliases:
+          - site-principal-tunnel
+          - tunnel
     restart: always
     deploy:
       resources:

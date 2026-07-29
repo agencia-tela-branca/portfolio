@@ -41,11 +41,11 @@ pipeline {
             steps {
                 echo 'Realizando deploy no ambiente de Produção...'
                 script {
-                    // Garante a existencia de um arquivo .env para que o docker compose nao falhe
+                    // Garante a existencia de um arquivo .env basico
                     sh 'touch .env'
                     
-                    // Copiamos o .env se presente no container do Jenkins ou no host
-                    sh 'cp /var/jenkins_home/portfolio/.env .env || cp /var/jenkins_home/atb-site/.env .env || cp /var/jenkins_home/site-principal-atb/.env .env || cp /home/user/projects/site-principal-atb/frontend/.env .env || cp /home/user/projects/site-principal-atb/.env .env || true'
+                    // Copiamos o .env (verificando projetos de infraestrutura, servidor e jenkins)
+                    sh 'cp /home/user/projects/servidor/.env .env || cp /var/jenkins_home/servidor/.env .env || cp /var/jenkins_home/portfolio/.env .env || cp /var/jenkins_home/atb-site/.env .env || cp /var/jenkins_home/site-principal-atb/.env .env || cp /home/user/projects/site-principal-atb/frontend/.env .env || cp /home/user/projects/site-principal-atb/.env .env || cp /home/user/projects/portfolio/.env .env || cp /var/jenkins_home/.env .env || true'
                     
                     // Remocao forçada de containers legados para evitar conflito no Docker Daemon
                     sh "docker rm -f site-principal-atb-frontend site-principal-atb-tunnel portfolio-frontend-v2 cloudflare-tunnel || true"
