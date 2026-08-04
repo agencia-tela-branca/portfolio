@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -6,9 +6,8 @@ import {
     Globe, TrendingUp, Zap, ArrowRight,
     CheckCircle2, Sparkles, Rocket, Target,
     Mail, Linkedin, Instagram, Twitter,
-    Menu, X, Shield, Heart, Users
+    Menu, X, Shield, Heart, Users, ExternalLink
 } from "lucide-react";
-import { useEffect } from "react";
 import pdvIcon from "../../assets/icons/pdv_icon.png";
 import saasIcon from "../../assets/icons/saas_icon.png";
 import erpIcon from "../../assets/icons/erp_icon.png";
@@ -68,14 +67,16 @@ const HomePage = () => {
         }
     };
 
-    const fadeInUp = {
-        hidden: { opacity: 0, y: 40 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.8, ease: "easeOut" }
+    // Dados dos clientes e projetos
+    const clients = [
+        {
+            name: "Tio Gordo Motos",
+            category: "Oficina & Socorrista de Motos",
+            description: "Desenvolvimento de plataforma web moderna e responsiva para exibição de serviços automotivos e socorrista especializado.",
+            link: "https://tiogordomotos.com.br",
+            gradient: "from-accent-blue to-accent-cyan"
         }
-    };
+    ];
 
     // Dados dos serviços
     const services = [
@@ -84,7 +85,7 @@ const HomePage = () => {
             title: "Sites de Alta Conversão",
             description: "Desenvolvimento de sites modernos, responsivos e otimizados para converter visitantes em clientes. Design estratégico focado em resultados. Sistemas de PDV personalizados e eficientes. Aplicativos responsivos e modernos, entregamos ferramentas robustas que integram design estratégico e máxima performance para converter tráfego em receita real.",
             gradient: "from-accent-blue to-accent-cyan",
-            features: ["Sistemas PDV Modernos", "SEO Otimizado", "Apps Customizados", "Design Orientado a Dados",]
+            features: ["Sistemas PDV Modernos", "SEO Otimizado", "Apps Customizados", "Design Orientado a Dados"]
         },
         {
             icon: <TrendingUp className="text-white" size={32} />,
@@ -99,41 +100,6 @@ const HomePage = () => {
             description: "Transformamos processos manuais em fluxos digitais automatizados. Ganhe tempo, reduza erros e escale seu negócio com tecnologia. Mantenha sua tecnologia sempre disponível e eficiente com o suporte de quem entende do seu projeto. Oferecemos acompanhamento contínuo para que sua tecnologia não apenas funcione, mas evolua junto com as demandas dos seus clientes.",
             gradient: "from-accent-cyan to-accent-purple",
             features: ["Atendimento Humanizado", "Evolução de Recursos", "Otimização com IA", "Eficiência Operacional"]
-        }
-    ];
-
-    const systems = [
-        {
-            title: "Sistema PDV (Ponto de Venda)",
-            subtitle: "Solução Completa de Vendas",
-            description: "Robusta solução para gestão de lojas e prestadores de serviços, unificando vendas, estoque e agenda em um único lugar.",
-            icon: <img src={pdvIcon} alt="PDV Icon" className="w-12 h-12 object-contain" />,
-            gradient: "from-accent-blue to-accent-cyan",
-            buttonText: "Conhecer PDV"
-        },
-        {
-            title: "Plataformas SaaS",
-            subtitle: "Soluções Sob Medida",
-            description: "Desenvolvemos plataformas completas para suas ideias de negócio baseadas em assinatura. Transformamos seu projeto em uma solução robusta e escalável na nuvem.",
-            icon: <img src={saasIcon} alt="SaaS Icon" className="w-12 h-12 object-contain" />,
-            gradient: "from-accent-purple to-accent-blue",
-            buttonText: "Faça um Orçamento"
-        },
-        {
-            title: "Sistema de Gestão (ERP)",
-            subtitle: "Desenvolvimento Personalizado",
-            description: "Criamos a solução integrada para unificar as áreas da sua empresa. Desenvolvemos módulos de financeiro, estoque, vendas e o que mais seu negócio precisar.",
-            icon: <img src={erpIcon} alt="ERP Icon" className="w-12 h-12 object-contain" />,
-            gradient: "from-accent-cyan to-accent-purple",
-            buttonText: "Converse com um Especialista"
-        },
-        {
-            title: "E-commerce Integrado",
-            subtitle: "Projetos Sob Encomenda",
-            description: "Criação de lojas virtuais de alta performance, 100% integradas com seus sistemas de estoque e PDV. Desenvolvemos o seu e-commerce do jeito que você imaginou.",
-            icon: <img src={ecommerceIcon} alt="E-commerce Icon" className="w-12 h-12 object-contain" />,
-            gradient: "from-accent-blue to-accent-purple",
-            buttonText: "Solicite uma Proposta"
         }
     ];
 
@@ -209,6 +175,7 @@ const HomePage = () => {
                     >
                         <button onClick={() => scrollToSection('sistemas')} className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium bg-transparent border-none cursor-pointer">Sistemas</button>
                         <button onClick={() => scrollToSection('servicos')} className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium bg-transparent border-none cursor-pointer">Serviços</button>
+                        <button onClick={() => scrollToSection('clientes')} className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium bg-transparent border-none cursor-pointer">Clientes</button>
                         <button onClick={() => scrollToSection('quem-somos')} className="text-brand-darkgray hover:text-accent-blue transition-colors font-medium bg-transparent border-none cursor-pointer">Quem somos</button>
                         <motion.div whileHover={{ y: -5, transition: { duration: 0.3 } }}>
                             <Button
@@ -233,7 +200,6 @@ const HomePage = () => {
                             className="md:hidden bg-white border-t border-brand-gray overflow-hidden"
                         >
                             <div className="flex flex-col p-6 gap-6 items-center text-center">
-
                                 <button
                                     onClick={() => { scrollToSection('sistemas'); setIsMenuOpen(false); }}
                                     className="text-lg font-medium text-brand-charcoal hover:text-accent-blue transition-colors bg-transparent border-none cursor-pointer"
@@ -245,6 +211,12 @@ const HomePage = () => {
                                     className="text-lg font-medium text-brand-charcoal hover:text-accent-blue transition-colors bg-transparent border-none cursor-pointer"
                                 >
                                     Serviços
+                                </button>
+                                <button
+                                    onClick={() => { scrollToSection('clientes'); setIsMenuOpen(false); }}
+                                    className="text-lg font-medium text-brand-charcoal hover:text-accent-blue transition-colors bg-transparent border-none cursor-pointer"
+                                >
+                                    Clientes
                                 </button>
                                 <button
                                     onClick={() => { scrollToSection('diferenciais'); setIsMenuOpen(false); }}
@@ -260,7 +232,7 @@ const HomePage = () => {
                                 </button>
                                 <Button
                                     variant="contained"
-                                    href="https://wa.me/55179883236219"
+                                    href="https://wa.me/5517988326219"
                                     target="_blank"
                                     onClick={() => setIsMenuOpen(false)}
                                     className="!bg-gradient-to-r !from-accent-blue !to-accent-purple !text-white !font-bold !py-3 !rounded-xl !normal-case !shadow-lg"
@@ -275,7 +247,6 @@ const HomePage = () => {
 
             {/* Hero Section */}
             <section className="flex-1 flex flex-col items-center justify-center text-center px-6 py-32 md:py-40 mt-16 bg-gradient-to-br from-brand-offwhite via-white to-brand-lightgray relative overflow-hidden">
-                {/* Background decorativo */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
                     <motion.div
                         animate={{
@@ -301,7 +272,6 @@ const HomePage = () => {
                     transition={{ duration: 0.8 }}
                     className="relative z-10 max-w-5xl"
                 >
-
                     <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 text-brand-charcoal">
                         Do Vazio da{" "}
                         <span className="relative inline-block">
@@ -342,8 +312,6 @@ const HomePage = () => {
                                 Conheça Nossos Serviços
                             </Button>
                         </motion.div>
-
-
                     </motion.div>
 
                     <motion.div
@@ -394,7 +362,7 @@ const HomePage = () => {
                         </motion.p>
                     </motion.div>
 
-                    <section id="pdv-showcase" className="py-20 md:py-32 px-6 bg-white border-y border-brand-gray relative overflow-hidden">
+                    <section id="pdv-showcase" className="py-20 md:py-32 px-6 bg-white border-y border-brand-gray relative overflow-hidden rounded-3xl shadow-sm">
                         <div className="max-w-7xl mx-auto">
                             <div className="flex flex-col lg:flex-row items-center gap-16">
                                 <motion.div
@@ -477,73 +445,17 @@ const HomePage = () => {
                                                 <p className="text-sm text-gray-400">Desempenho da API: <span className="text-white font-mono">240ms</span></p>
                                             </div>
 
-                                            {/* Decorative circles in card */}
                                             <div className="absolute -bottom-20 -right-20 w-60 h-60 bg-accent-blue/20 rounded-full blur-3xl" />
                                             <div className="absolute -top-20 -left-20 w-40 h-40 bg-accent-purple/20 rounded-full blur-3xl" />
                                         </div>
                                     </div>
-
-                                    {/* External decorative blur */}
                                     <div className="absolute -top-10 -right-10 w-72 h-72 bg-accent-blue/10 rounded-full blur-3xl -z-10" />
                                 </motion.div>
                             </div>
                         </div>
                     </section>
-
-
-                    {/*
-
-                    <motion.div
-                        variants={containerVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, amount: 0.1 }}
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-                    >
-                        {systems.map((system, index) => (
-                            <motion.div
-                                key={index}
-                                variants={itemVariants}
-                                whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                                className="group relative bg-white rounded-3xl p-8 border border-brand-gray transition-all duration-300 flex flex-col items-center"
-                            >
-                                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${system.gradient} flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform`}>
-                                    {system.icon}
-                                </div>
-
-                                <h3 className="text-xl font-bold mb-1 text-brand-charcoal group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-accent-blue group-hover:to-accent-purple transition-all">
-                                    {system.title}
-                                </h3>
-
-                                <p className="text-lg font-semibold text-brand-darkgray mb-4">
-                                    {system.subtitle}
-                                </p>
-
-                                <p className="text-brand-darkgray mb-8 leading-relaxed text-center">
-                                    {system.description}
-                                </p>
-
-                                <div className="mt-auto w-full">
-                                    <Button
-                                        variant="outlined"
-                                        onClick={() => scrollToSection('contato')}
-                                        className="!border-brand-gray !text-brand-charcoal hover:!border-accent-blue hover:!text-accent-blue !rounded-full !px-4 !py-2 !normal-case !font-semibold !transition-all w-full !whitespace-nowrap !text-sm"
-                                    >
-                                        {system.buttonText}
-                                    </Button>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                    
-            {/* PDV Showcase - Destaque Premium */}
-
-
-
-
                 </div>
             </section>
-
 
             {/* Serviços Section */}
             <section id="servicos" className="py-20 md:py-32 px-6 bg-white">
@@ -583,7 +495,6 @@ const HomePage = () => {
                                 whileHover={{ y: -10, transition: { duration: 0.3 } }}
                                 className="group relative bg-white rounded-3xl p-8 border border-brand-gray hover:border-transparent hover:shadow-2xl transition-all duration-300"
                             >
-                                {/* Gradient border on hover */}
                                 <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-30 transition-opacity -z-10 blur-xl`} />
 
                                 <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
@@ -612,9 +523,83 @@ const HomePage = () => {
                 </div>
             </section>
 
+            {/* Clientes e Projetos Entregues Section */}
+            <section id="clientes" className="py-20 md:py-32 px-6 bg-brand-lightgray/30 relative overflow-hidden">
+                <div className="max-w-7xl mx-auto">
+                    <motion.div
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.2 }}
+                        className="text-center mb-16"
+                    >
+                        <motion.h2
+                            variants={itemVariants}
+                            className="text-4xl md:text-5xl font-extrabold mb-4 text-brand-charcoal"
+                        >
+                            Clientes que <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple">Confiam na Gente</span>
+                        </motion.h2>
+                        <motion.p
+                            variants={itemVariants}
+                            className="text-xl text-brand-darkgray max-w-2xl mx-auto"
+                        >
+                            Projetos reais criados sob medida para alavancar a presença digital e os resultados de nossos parceiros.
+                        </motion.p>
+                    </motion.div>
+
+                    <motion.div
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.1 }}
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center"
+                    >
+                        {clients.map((client, index) => (
+                            <motion.div
+                                key={index}
+                                variants={itemVariants}
+                                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                                className="bg-white rounded-3xl p-8 border border-brand-gray shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+                            >
+                                <div>
+                                    <div className="flex items-center gap-4 mb-6">
+                                        <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${client.gradient} flex items-center justify-center text-white font-bold text-xl shadow-md flex-shrink-0`}>
+                                            {client.name.charAt(0)}
+                                        </div>
+                                        <div>
+                                            <h3 className="text-xl font-bold text-brand-charcoal">{client.name}</h3>
+                                            <span className="text-xs font-semibold uppercase tracking-wider text-accent-blue bg-accent-blue/10 px-2.5 py-1 rounded-full">
+                                                {client.category}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <p className="text-brand-darkgray leading-relaxed mb-6 text-sm">
+                                        {client.description}
+                                    </p>
+                                </div>
+
+                                {client.link && (
+                                    <div className="pt-4 border-t border-brand-gray/50">
+                                        <a
+                                            href={client.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-2 text-sm font-semibold text-accent-blue hover:text-accent-purple transition-colors"
+                                        >
+                                            <span>Ver Projeto</span>
+                                            <ExternalLink size={16} />
+                                        </a>
+                                    </div>
+                                )}
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
+            </section>
 
             {/* Diferenciais Section */}
-            <section className="py-20 px-6 bg-white">
+            <section id="diferenciais" className="py-20 px-6 bg-white">
                 <div className="max-w-7xl mx-auto">
                     <motion.div
                         variants={containerVariants}
@@ -669,7 +654,7 @@ const HomePage = () => {
                             <Button
                                 variant="contained"
                                 size="large"
-                                href="https://wa.me/55179883236219"
+                                href="https://wa.me/5517988326219"
                                 target="_blank"
                                 className="!bg-white !text-accent-blue !font-bold !text-lg !px-8 !py-3 !rounded-full !shadow-lg hover:!bg-gray-100 !transform hover:!scale-105 !transition-all !normal-case"
                             >
@@ -680,7 +665,7 @@ const HomePage = () => {
                 </div>
             </section>
 
-            {/* Quem Somos Section - Migração do QuemSomosPage */}
+            {/* Quem Somos Section */}
             <section id="quem-somos" className="py-20 md:py-32 px-6 bg-brand-offwhite relative overflow-hidden">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-24">
@@ -779,7 +764,6 @@ const HomePage = () => {
                 </div>
             </section>
 
-
             {/* Footer */}
             <footer id="contato" className="bg-gray-900 text-white py-8 px-6">
                 <div className="max-w-7xl mx-auto">
@@ -831,7 +815,7 @@ const HomePage = () => {
                                 </li>
                                 <li className="flex items-center gap-2 justify-center">
                                     <Zap size={20} className="text-accent-blue flex-shrink-0" />
-                                    <a href="https://wa.me/55179883236219" target="_blank" className="hover:text-accent-blue transition-colors">
+                                    <a href="https://wa.me/5517988326219" target="_blank" rel="noreferrer" className="hover:text-accent-blue transition-colors">
                                         Entre em contato pelo WhatsApp
                                     </a>
                                 </li>
