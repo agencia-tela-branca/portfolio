@@ -75,6 +75,13 @@ const HomePage = () => {
             description: "Desenvolvimento de plataforma web moderna e responsiva para exibição de serviços automotivos e socorrista especializado.",
             link: "https://tiogordomotos.com.br",
             gradient: "from-accent-blue to-accent-cyan"
+        },
+        {
+            name: "Terra Forte Terraplanagem",
+            category: "Terraplanagem & Infraestrutura",
+            description: "Desenvolvimento de site institucional para empresa de terraplanagem, com foco em captação de clientes em Fernandópolis e região.",
+            link: "https://terraforte.org",
+            gradient: "from-accent-purple to-accent-blue"
         }
     ];
 
